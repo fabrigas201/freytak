@@ -1,0 +1,28 @@
+@font-face {
+	font-family: "Arno Pro";
+	src: url("../fonts/arno_pro-regular/font.eot");
+	src: url("../fonts/arno_pro-regular/font.eot?#iefix")format("embedded-opentype"),
+		 url("../fonts/arno_pro-regular/font.woff") format("woff"),
+		 url("../fonts/arno_pro-regular/font.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: "Arno Pro";
+	src: url("../fonts/arno_pro-smtext/font.eot");
+	src: url("../fonts/arno_pro-smtext/font.eot?#iefix")format("embedded-opentype"),
+		 url("../fonts/arno_pro-smtext/font.woff2") format("woff2"),
+		 url("../fonts/arno_pro-smtext/font.woff") format("woff"),
+		 url("../fonts/arno_pro-smtext/font.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 500;
+}
+@font-face {
+	font-family: "Arno Pro";
+	src: url("../fonts/arno_pro-bold/font.eot");
+	src: url("../fonts/arno_pro-bold/font.eot?#iefix")format("embedded-opentype"),
+		 url("../fonts/arno_pro-bold/font.woff") format("woff"),
+		 url("../fonts/arno_pro-bold/font.ttf") format("truetype");
+	font-style: normal;
+	font-weight: bold;
+}

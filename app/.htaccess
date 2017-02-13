@@ -1,0 +1,12 @@
+#Allow from 89.169.142.175
+#Allow from 77.41.82.210
+#Deny from all
+
+#AuthName 'Administrative zone'
+#AuthType Basic
+#AuthUserFile /home/vencedor340/data/www/frey.sk111.ru/ve/.pass
+#AuthUserFile c:/OpenServer/domain/frey.loc/app/.pass
+
+
+
+#require valid-user

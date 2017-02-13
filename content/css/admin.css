@@ -1,0 +1,220 @@
+.imageEditBl {
+	overflow:hidden;
+}
+
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin:0px;padding:0px;
+}
+
+table{font-size:12px;}
+td{color:#000;}
+tr{background:#FFF;}
+th{text-align:left;}
+a{color:#000;}
+img{border:none;}
+
+h2{margin:0;padding:0;}
+
+form{
+	margin:0px;padding:0px;
+}
+
+fieldset{
+	border:1px solid #d2d5d6;
+}
+legend{
+	color:gray;
+}
+
+input{font-size:10px;vertical-align: middle;}
+
+.input{
+	width:100%;
+}
+.button{
+	font-size:14px;
+}
+
+.dN{
+	display:none;
+}
+.fL{
+	float:left;
+}
+.fR{
+	float:right;
+}
+
+
+.asc a{
+	background:url(/i/icons/asc.gif) no-repeat 100% 50%;
+	padding:0 12px 0 0;
+}
+.desc a{
+	background:url(/i/icons/desc.gif) no-repeat 100% 50%;
+	padding:0 12px 0 0;
+}
+
+.edit, .del{
+	display:inline-block;
+	width:16px;height:16px;overflow:hidden;
+	margin-left:4px;
+}
+.edit{
+	background:url(/i/icons/edit.png) no-repeat;
+}
+.del{
+	background:url(/i/icons/del.png) no-repeat;
+}
+
+/*добавить внизу списка*/
+.addItem a{
+	float:left;
+	display:block;
+	font-weight:bold;
+	font-size:14px;
+	text-decoration:none;
+	color:#285268;
+	height:19px;overflow:hidden;
+	padding:2px 0 20px 25px;
+	margin:10px 0 0 10px;
+	background:url('/i/icons/add2.png') no-repeat;
+}
+.addItem a:hover{
+	text-decoration:none;
+	color:#5880a5;
+}
+
+
+/* Картинки в карточке товара */
+.imageEditBl{
+	width:200px;
+	padding:5px 0;
+	margin:0 0 5px 0;
+	border:0px solid red;
+	border-bottom:1px dashed gray;
+}
+.imageEditBl .i{
+	width:190px;
+	margin:0 5px;
+	text-align:center;
+}
+
+/* Левое меню */
+#leftMenu{}
+#leftMenu .t{
+	font-size:16px;
+	color:#285268;
+	font-weight:bold;
+	margin:15px 0 0 0;
+	padding:2px 0 2px 4px;
+	border-top:1px solid #d2d5d6;
+}
+#leftMenu div{
+	width:auto;
+	padding:2px;
+	border:1px solid #d2d5d6;
+	border-top:0;
+}
+#leftMenu a{
+	color:#000;
+	text-decoration:none;
+	font-size:12px;
+	padding:3px 0 3px 2px;
+	display:block;
+}
+#leftMenu .i0{
+	margin:0;
+	padding:0;
+	border:0;
+}
+/*#leftMenu table{
+	width:180px;
+	border-collapse:collapse;
+}
+#leftMenu td{
+	color:#000000;
+	padding:2px;
+	border:1px solid #d2d5d6;
+}
+#leftMenu tr{background:#fff}*/
+#leftMenu .add{
+	display:block;
+	float:right;
+	width:21px;height:21px;overflow:hidden;
+	padding:0;
+	background:url('/i/icons/plus_icon.gif') no-repeat 50% 0;
+	border:0px solid red;
+}
+
+#leftMenu .vencedor{
+	border:1px solid #d2d5d6;
+}
+#leftMenu .vencedor a{
+	padding:0;
+}
+/* end Левое меню */
+
+.contTbl{
+	border-collapse:collapse;
+}
+.contTbl td, .contTbl th{
+	padding:4px;
+	border:1px solid #d2d5d6;
+}
+
+
+.errorsBl, .errorsBl b{color:red;}
+.msgBl, .msgBl b{
+	position:absolute;left:230px;top:10px;
+	color:green;
+	font-weight:bold;
+	font-size:14px;
+}
+
+
+ul.tab {
+    list-style-type: none !important;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+	
+}
+
+
+ul.tab li:last-child{
+	border-right:1px solid #ссс;
+	
+}
+
+ul.tab li {
+	float: left; 
+	list-style-type: none !important;
+	margin:0;
+	border-left:1px solid #ссс;
+	border-top:1px solid #ссс;
+}
+
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 12px;
+	font: 14px 'Circe-Light', sans-serif;
+}
+
+ul.tab li a:hover, ul.tab li a:focus, ul.tab li a.active {
+	background-color: #000;
+	color:#fff;
+}
+
+.tabcontent {
+    display: none;
+}
+

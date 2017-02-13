@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+/upload/
+/images/
+/i/
+/files/
+/data/
+/content/i/
+/content/templates_c/
+.env
+.wakatime-project

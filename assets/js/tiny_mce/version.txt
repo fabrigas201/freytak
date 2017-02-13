@@ -1,0 +1,5 @@
+TinyMCE 3.4.6
+MCFileManager v.3.1.0.5 
+MCImageManager v.3.1.0.4
+
+MCFileManager и MCImageManager отсюда http://rutracker.org/forum/viewtopic.php?p=48090772
