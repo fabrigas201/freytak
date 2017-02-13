@@ -29,9 +29,6 @@ $route -> group(['prefix' => 'admin', 'namespace' => 'App\\Controllers\\Admin', 
 
 $route -> group(['namespace' => 'App\\Controllers\\Web'], function($route){
     $route -> get('/', 'Home@index');
-
-	$route -> post('contact/send', 'Contacts@send');
-	$route -> post('contact/subscribe', 'Contacts@subscribe');
 });
 
 
@@ -53,6 +50,9 @@ $route -> group(['namespace' => 'App\\Controllers\\Web', 'prefix' => $langs_coll
 
 	//Контакты
 	$route -> get('contact/:any', 	'Contacts@index');
+	$route -> post('contact/send', 'Contacts@send');
+	$route -> post('contact/subscribe', 'Contacts@subscribe');
+	
 	
 	$route -> post('contact/events', 	'Contacts@events');
 });

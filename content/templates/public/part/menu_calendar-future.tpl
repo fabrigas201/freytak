@@ -12,6 +12,6 @@
 		{/foreach}
 	{/if}
 	<a href="javascript:void(0);" class="linkTriangle linkTriangle_menu calendar__open">
-		<span class="linkTriangle__text">открыть календарь</span>
+		<span class="linkTriangle__text">{__('View_calendar')}</span>
 	</a>
 </div>

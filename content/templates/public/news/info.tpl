@@ -17,7 +17,7 @@
 			<div class="container__col text">
 				<h2 class="title title_big title_post">
 					<span class="title__text arno">{$page -> title}</span>
-					<a href="javascript:history.go(-1)" class="title__link title__link_insert linkTriangle">вернуться к списку</a>
+					<a href="javascript:history.go(-1)" class="title__link title__link_insert linkTriangle">{__('back_to_list')}</a>
 				</h2>
 				
 				<div class="formated formated_news">
@@ -69,7 +69,7 @@
 							</div>
 							<div class="linkWrap">
 								<a href="{get_url('item')}/{$prev_item -> alias}" class="linkTriangle linkTriangle_line">
-									<span class="linkTriangle__text">предыдущая новость</span>
+									<span class="linkTriangle__text">{__('previous_news')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>
@@ -86,7 +86,7 @@
 							</div>
 							<div class="linkWrap">
 								<a href="{get_url('item')}/{$next_item -> alias}" class="linkTriangle linkTriangle_line">
-									<span class="linkTriangle__text">следующая новость</span>
+									<span class="linkTriangle__text">{__('next_news')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>

@@ -23,17 +23,15 @@
 							<span class="linkTriangle__line"></span>
 						</a>
 
-					{if count($practics)}
+						{if count($practics)}
 						<ul class="list__items">
-
 						{foreach $practics as $pr}
 							<li class="list__item">
 								<a href="{get_url(config('lang.weblang'), 'page', $pr -> alias)}" class="list__link">{$pr -> title}</a>
 							</li>
 						{/foreach}
-
 						</ul>
-					{/if}
+						{/if}
 
 					</div>
 					<div class="container__col header__list list">
@@ -44,7 +42,7 @@
 							<span class="linkTriangle__line"></span>
 						</a>
 
-					{if the_tags('inIndex')|count}
+						{if the_tags('inIndex')|count}
 						<ul class="list__items">
 
 						{foreach the_tags('inIndex') as $page}
@@ -56,7 +54,7 @@
 						{/foreach}
 
 						</ul>
-					{/if}
+						{/if}
 
 					</div>
 					<div class="clear"></div>
@@ -87,16 +85,13 @@
 				</div>
 
 				<div class="container__col">
-
 					{include file=$search}
-
 					<div class="header__nav">
 						<ul class="nav">
 							<li class="nav__item">
 								<a href="{get_url(config('lang.weblang'))}" class="nav__link">
 									<span class="arno nav__linkInfo">
-										<span class="nav__linkHelp">Главная</span>
-										страница
+										<span class="nav__linkHelp">{__('home')}</span>{__('page')}
 									</span>
 								</a>
 							</li>
@@ -104,22 +99,19 @@
 							<li class="nav__item">
 								<a href="javascript:void(0)" class="nav__link">
 									<span class="arno nav__linkInfo">
-										<span class="nav__linkHelp">Наше</span>
-										бюро
+										<span class="nav__linkHelp">{__('our_bureau_top')}</span>
+										{__('our_bureau_bottom')}
 									</span>
 								</a>
 
 							{if isset($subBuro)}
 								<ul class="nav__second">
 								{foreach $subBuro as $menu}
-									{if $menu -> alias == 'podpiska-na-pravovye-novosti'}
-										{continue}
-									{/if}
+									{if $menu -> alias == 'podpiska-na-pravovye-novosti'}{continue}{/if}
 									<li class="nav__item nav__item_second">
 										<a href="{get_url(config('lang.weblang'), $menu -> typeMenu, $menu -> alias)}" class="nav__link nav__link_second">{$menu -> title}</a>
 									</li>
 								{/foreach}
-
 								</ul>
 							{/if}
 							</li>
@@ -127,8 +119,8 @@
 							<li class="nav__item">
 								<a href="{get_url(config('lang.weblang'), 'article/nashi-proekty')}" class="nav__link">
 									<span class="arno nav__linkInfo">
-										<span class="nav__linkHelp">Опыт и </span>
-										проекты
+										<span class="nav__linkHelp">{__('experience_and_projects_top')}</span>
+											{__('experience_and_projects_bottom')}
 									</span>
 								</a>
 							</li>
@@ -136,7 +128,7 @@
 							<li class="nav__item">
 								<a href="javascript:void(0)" class="nav__link">
 									<span class="arno nav__linkInfo">
-										<span class="nav__linkHelp">Медиа и </span>инфоцентр
+										<span class="nav__linkHelp">{__('Media_and_Information_top')} </span>{__('Media_and_Information_bottom')}
 									</span>
 								</a>
 
@@ -153,7 +145,7 @@
 							<li class="nav__item">
 								<a href="{get_url(config('lang.weblang'), 'contact/kontakty')}" class="nav__link">
 									<span class="arno nav__linkInfo">
-										<span class="nav__linkHelp">Вступайте в</span>контакт
+										<span class="nav__linkHelp">{__('Contact_us_top')}</span>{__('Contact_us_bottom')}
 									</span>
 								</a>
 							</li>

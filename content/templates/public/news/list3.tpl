@@ -26,23 +26,23 @@
 					{if !empty($results) }
 						{foreach $results as $v}
 						<div class="post post_news">
-							<a href="{get_url(config('lang.weblang'), 'item')}/{$v -> alias}" class="post__title arno">{$v -> title}</a>
+							<a href="{get_url(config('lang.weblang'), 'item', $v -> alias)}" class="post__title arno">{$v -> title}</a>
 							<div class="post__text">
 								<p>{$v -> descr}</p>
 							</div>
 							<div class="linkWrap">
-								<a href="{get_url(config('lang.weblang'),'item')}/{$v -> alias}" class="linkTriangle linkTriangle_line">
-									<span class="linkTriangle__text">подробнее</span>
+								<a href="{get_url(config('lang.weblang'),'item', $v -> alias)}" class="linkTriangle linkTriangle_line">
+									<span class="linkTriangle__text">{__('more')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>
 							<span class="post__author info__about">
-							{if isset($v -> dateAdd) && $v -> dateAdd != '0000-00-00 00:00:00'}{$v -> dateAdd} года | {/if} {if isset($v -> for_smi)} <i>для "{$v -> for_smi}"</i>{/if}
+							{if isset($v -> dateAdd) && $v -> dateAdd != '0000-00-00 00:00:00'}{$v -> dateAdd} {__('years')} | {/if} {if isset($v -> for_smi)} <i>для "{$v -> for_smi}"</i>{/if}
 							</span>
 						</div>
 						{/foreach}
 					{else}
-						<b>Список пуст</b>
+						<b>{__('the_list_is_empty')}</b>
 					{/if}
 					{if $pagesList}
 					<div class="pagination">

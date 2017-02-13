@@ -19,7 +19,7 @@
 					<div class="history__item">
 						<div class="title title_big">
 							<span class="title__text arno">{$v -> title}</span>
-							<a href="{get_url(config('lang.weblang'),'history', $v -> alias)}" class="title__link title__link_insert linkTriangle">подробнее</a>
+							<a href="{get_url(config('lang.weblang'),'history', $v -> alias)}" class="title__link title__link_insert linkTriangle">{__('more')}</a>
 						</div>
 
 						{if isset($v -> cover -> name)}

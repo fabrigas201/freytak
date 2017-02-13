@@ -5,9 +5,7 @@ use Swift_Mailer;
 use Swift_MailTransport;
 use Cms\Controller;
 use Cms\Request;
-use Cms\Api\Articles;
 use Cms\Api\ContactsModel;
-use Cms\Api\Pagination;
 
 use Cms\Exception\NotFoundException;
 
@@ -19,7 +17,6 @@ class Contacts extends BaseController{
 	    header("Content-Type: application/x-suggestions+json; charset=utf-8");
 		
 		$request = new Request();
-	   
 		if($request -> isPost()){
 		   
 			$html = '';
@@ -39,22 +36,22 @@ class Contacts extends BaseController{
 				}
 				
 				
-				$this -> errors[] = 'Форма заполнена не верно';
+				$this -> errors[] = __('form_error');
 			}
 			
 		   
 			if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-			   $this -> errors[] = 'Некорректно заполнено поле Ваш E-mail ';
+			   $this -> errors[] = __('email_filed');
 			}else{
 				$html .= '<p>Email: "'.$email.'"</p>';
 			}
 			if(empty($name)){
-			   $this -> errors[] = 'Поле Как к Вам обращаться не должно быть пустым ';
+			   $this -> errors[] =  __('name_filed');
 			}else{
 				$html .= '<p>Имя: "'.$name.'"</p>';
 			}
 			if(empty($text)){
-			   $this -> errors[] = 'Поле Текст письма не должно быть пустым ';
+			   $this -> errors[] =  __('text_filed');
 			}else{
 				$html .= '<p>Сообщение:<br /> "'.htmlentities($text).'"</p>';
 			}
@@ -137,9 +134,9 @@ class Contacts extends BaseController{
 			}
 
 			if(!$mailer->send($message)) {
-				echo json_encode(['errors' => 'Ошибка при отправке, обратитесь к администрации сайта!']); exit;
+				echo json_encode(['errors' => __('error_contact')]); exit;
 			} else {
-				echo json_encode(['success' => 'Сообщение успешно отправлено!']);
+				echo json_encode(['success' => __('success')]);
 				exit;
 			}
 		}
@@ -170,28 +167,28 @@ class Contacts extends BaseController{
 					fclose($fileOpen);
 				}
 				
-				$this -> errors[] = 'Форма не верно заполнено';
+				$this -> errors[] = __('form_error');
 			}
 			
 		   
 			if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-			   $this -> errors[] = 'Некорректно заполнено поле Ваш E-mail ';
+			   $this -> errors[] =  __('email_filed');
 			}else{
 				$html .= '<p>Email: "'.$email.'"</p>';
 			}
 			if(empty($name)){
-			   $this -> errors[] = 'Поле Как к Вам обращаться не должно быть пустым ';
+			   $this -> errors[] =  __('name_filed');
 			}else{
 				$html .= '<p>Имя: "'.$name.'"</p>';
 			}
 			if(empty($phone)){
-			   $this -> errors[] = 'Поле Телефон не должно быть пустым ';
+			   $this -> errors[] =  __('phone_filed');
 			}else{
 				$html .= '<p>Телефон:<br /> "'.$phone.'"</p>';
 			}
 			
 			if(empty($url)){
-			   $this -> errors[] = 'Ошибка URL';
+			   $this -> errors[] = __('url_error');
 			}else{
 				$html .= '<p>Страница подписки:<br /> "'.$url.'"</p>';
 			}
@@ -277,9 +274,9 @@ class Contacts extends BaseController{
 			}
 
 			if(!$mailer->send($message)) {
-				echo json_encode(['errors' => 'Ошибка при отправке, обратитесь к администрации сайта!']); exit;
+				echo json_encode(['errors' => __('error_contact')]); exit;
 			} else {
-				echo json_encode(['success' => 'Сообщение успешно отправлено!']);
+				echo json_encode(['success' => __('success')]);
 				exit;
 			}
 		}
@@ -312,28 +309,28 @@ class Contacts extends BaseController{
 					fclose($fileOpen);
 				}
 				
-				$this -> errors[] = 'Форма не верно заполнено';
+				$this -> errors[] = __('form_error');
 			}
 			
 		   
 			if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-			   $this -> errors[] = 'Некорректно заполнено поле Ваш E-mail ';
+			   $this -> errors[] = __('email_error');
 			}else{
 				$html .= '<p>Email: "'.$email.'"</p>';
 			}
 			if(empty($name)){
-			   $this -> errors[] = 'Поле Как к Вам обращаться не должно быть пустым ';
+			   $this -> errors[] = __('name_filed');
 			}else{
 				$html .= '<p>Имя: "'.$name.'"</p>';
 			}
 			if(empty($phone)){
-			   $this -> errors[] = 'Поле Телефон не должно быть пустым ';
+			   $this -> errors[] = __('phone_filed');
 			}else{
 				$html .= '<p>Телефон:<br /> "'.$phone.'"</p>';
 			}
 			
 			if(empty($url)){
-			   $this -> errors[] = 'Ошибка URL';
+			   $this -> errors[] = __('url_error');
 			}else{
 				$html .= '<p>Страница подписки:<br /> "'.$url.'"</p>';
 			}
@@ -412,9 +409,9 @@ class Contacts extends BaseController{
 			}
 
 			if(!$mailer->send($message)) {
-				echo json_encode(['errors' => 'Ошибка при отправке, обратитесь к администрации сайта!']); exit;
+				echo json_encode(['errors' => __('error_contact')]); exit;
 			} else {
-				echo json_encode(['success' => 'Сообщение успешно отправлено!']);
+				echo json_encode(['success' => __('success')]);
 				exit;
 			}
 		}
@@ -434,7 +431,7 @@ class Contacts extends BaseController{
 
 		// Хлебные крошки
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'contact', $result -> alias) .'">'.$result -> title.'</a>';
 
 		$vars = [

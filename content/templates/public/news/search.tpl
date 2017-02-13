@@ -41,17 +41,16 @@
 						</div>
 						<div class="linkWrap">
 							<a href="{get_url(config('lang.weblang'), $mod, $v -> alias)}" class="linkTriangle linkTriangle_line">
-								<span class="linkTriangle__text">подробнее</span>
+								<span class="linkTriangle__text">{__('more')}</span>
 								<span class="linkTriangle__line"></span>
 							</a>
 						</div>
 						<span class="post__author info__about">
-							{date_to($v -> dateAdd)} года | 
-							<i>для "Коммерсант"</i>
+							{if isset($v -> dateAdd) && $v -> dateAdd != '0000-00-00 00:00:00'}{$v -> dateAdd} {__('years')} | {/if} {if isset($v -> for_smi)} <i>для "{$v -> for_smi}"</i>{/if}
 						</span>
 					</div>
 					{foreachelse}
-						<b>Список пуст</b>
+						<b>{__('the_list_is_empty')}</b>
 					{/foreach}
 
 					{if $pagesList}

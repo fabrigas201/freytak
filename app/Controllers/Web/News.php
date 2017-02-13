@@ -65,7 +65,7 @@ class News extends BaseController{
 
 		// Хлебные крошки
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		if(is_array($bread)){
 			foreach($bread as $item){
 				
@@ -146,7 +146,7 @@ class News extends BaseController{
 		
 		// Хлебные крошки
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		if(is_array($bread)){
 			foreach($bread as $item){
 				
@@ -162,7 +162,7 @@ class News extends BaseController{
 			}
 			
 		}
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item/'.$result -> alias).'">'.$result -> title.'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item',$result -> alias).'">'.$result -> title.'</a>';
 
 	   
 		$vars = [

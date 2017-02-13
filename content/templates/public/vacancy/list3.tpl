@@ -16,8 +16,8 @@
 		<div class="container__row">
 			<div class="container__col text">
 				<h2 class="title title_big title_news">
-					{if $title=="Юридические услуги"}
-					<span class="title__text arno">Практики</span>
+					{if $title==__('legal_services')}
+					<span class="title__text arno">{__('practics')}</span>
 					{else}
 					<span class="title__text arno">{$title}</span>
 					{/if}
@@ -33,7 +33,7 @@
 							</div>
 							<div class="linkWrap">
 								<a href="{get_url(config('lang.weblang'), 'page')}/{$v -> alias}" class="linkTriangle linkTriangle_line">
-									<span class="linkTriangle__text">подробнее</span>
+									<span class="linkTriangle__text">{__('more')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>

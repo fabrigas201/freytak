@@ -58,11 +58,11 @@ class Search extends BaseController{
 	   
 		// Хлебные крошки
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url('search?q='.htmlentities($query)).'">Результаты поиска::'.htmlentities($query).'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url('search?q='.htmlentities($query)).'">'.__('search_result').'::'.htmlentities($query).'</a>';
 	   
 		$vars = [
-			'title' 		=> 'Результаты поиска::'.htmlentities($query),
+			'title' 		=> __('search_result').'::'.htmlentities($query),
 			'result' 		=> $result,
 			'breadcrumbs' 	=> $breadcrumbs,
 			'pagesList' 	=> $pagination -> createLinks(),

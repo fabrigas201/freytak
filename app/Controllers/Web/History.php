@@ -50,14 +50,14 @@ class History extends BaseController{
 		
 		// Хлебные крошки
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'), 'history').'">ГАЛЕРЕЯ РУССКОЙ ЮРИДИЧЕСКОЙ СЛАВЫ</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'), 'history').'">'.__('GALLERY_OF_RUSSIAN_LAW_OF_FAME').'</a>';
 		
 
 		$vars = [
-			'title' => 'Галлерея',
-			'metaK' => 'df',
-			'metaD' => 'sfd',
+			'title' => __('GALLERY_OF_RUSSIAN_LAW_OF_FAME'),
+			'metaK' => '',
+			'metaD' => '',
 			'results' => $results,
 			'breadcrumbs' => $breadcrumbs,
 			'segment' => $request -> segment(1),
@@ -105,8 +105,8 @@ class History extends BaseController{
 		
 
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'), 'history').'">ГАЛЕРЕЯ РУССКОЙ ЮРИДИЧЕСКОЙ СЛАВЫ</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'), 'history').'">'.__('GALLERY_OF_RUSSIAN_LAW_OF_FAME').'</a>';
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'history',$result -> alias).'">'.$result -> title.'</a>';
 
 	   

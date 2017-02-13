@@ -59,7 +59,7 @@
 		<div class="container__row">
 			<div class="container__col folder hiddenMobile{if $smarty.server.REQUEST_URI|strpos:contact} folder_opened{/if}">
 				<div class="form__wrap">
-					<form action="{get_url('contact/send')}" method="POST" class="form form_footer">
+					<form action="{get_url(config('lang.weblang'), 'contact/send')}" method="POST" class="form form_footer">
 						<div class="form__border">
 							<div class="folder__title arno">{__('write_to_us')}</div>
 							<div class="form__line for-text">
@@ -118,7 +118,7 @@
 {*				<div class="contacts__item"> *}
 				<a href="{get_url(config('lang.weblang'),'contact/kontakty')}" class="contacts__item contacts__item_link">
 					<img src="{get_url('assets/images/contacts/map.png')}" alt="" class="contacts__ico">
-					<span class="contacts__value">119019, Москва, Филипповский переулок, 13/2</span>
+					<span class="contacts__value">{__('adres_text')}</span>
 				</a>
 {*				</div> *}
 				<a href="mailto:office@freytakandsons.com" class="contacts__item contacts__item_link">

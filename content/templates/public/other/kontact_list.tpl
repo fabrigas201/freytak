@@ -16,34 +16,34 @@
 		<div class="container__row">
 			<div class="container__col text">
 				<h2 class="title title_big">
-					<span class="title__text arno">Наши контактные данные</span>
+					<span class="title__text arno">{__('our_contact_details')}</span>
 				</h2>
 				<div class="contacts">
 					<div class="contacts__item">
 						<img src="{get_url('assets/images/contacts/map.png')}" alt="" class="contacts__ico">
-						<span class="contacts__label">Адрес:</span>
-						<span class="contacts__value">119019, Москва, Филипповский переулок, 13/2</span>
+						<span class="contacts__label">{__('adres')}</span>
+						<span class="contacts__value">{__('adres_text')}</span>
 						<span class="clear"></span>
 					</div>
 					<a href="mailto:office@freytakandsons.com" class="contacts__item contacts__item_link">
 						<img src="{get_url('assets/images/contacts/mail.png')}" alt="" class="contacts__ico">
-						<span class="contacts__label">Почта:</span>
+						<span class="contacts__label">{__('kemail')}</span>
 						<span class="contacts__value">office@freytakandsons.com</span>
 						<span class="clear"></span>
 					</a>
 					<a href="tel:+74952762766" class="contacts__item contacts__item_link">
 						<img src="{get_url('assets/images/contacts/phone.png')}" alt="" class="contacts__ico">						
-						<span class="contacts__label">Телефон:</span>
+						<span class="contacts__label">{__('phone')}</span>
 						<span class="contacts__value">8 495 276-276-6</span>
 						<span class="clear"></span>
 					</a>	
 					<div class="contacts__item">
 						<img src="{get_url('assets/images/contacts/vcard.png')}" alt="" class="contacts__ico">						
-						<span class="contacts__label">Для прессы:</span>
+						<span class="contacts__label">{__('for_media')}</span>
 						<span class="contacts__value">
-							<a href="{get_url('upload/Files/vcard/kn.vcf')}" style="color:black;">Ксения Наумова (vCard)</a> <br>
-							<a href="{get_url('upload/Files/vcard/gm.vcf')}" style="color:black;">Гульназ Мюттер (vCard)</a> <br>
-							<a href="{get_url('upload/Files/vcard/eg.vcf')}" style="color:black;">Екатерина Глухих (vCard)</a>
+							<a href="{get_url('upload/Files/vcard/kn.vcf')}" style="color:black;">{__('contact1')} (vCard)</a> <br>
+							<a href="{get_url('upload/Files/vcard/gm.vcf')}" style="color:black;">{__('contact2')} (vCard)</a> <br>
+							<a href="{get_url('upload/Files/vcard/eg.vcf')}" style="color:black;">{__('contact3')} (vCard)</a>
 						</span>
 						<span class="clear"></span>
 					</div>	
@@ -54,7 +54,7 @@
 				</div>
 
 				<h2 class="title title_big">
-					<span class="title__text arno">Как нас найти:</span>
+					<span class="title__text arno">{__('how_to_find_us')}</span>
 				</h2>
 				{if isset($result -> descr)}
 				<div class="contacts__info">

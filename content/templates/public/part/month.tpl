@@ -1,7 +1,5 @@
 <br><br>
-
 {*
-
 {if !empty($subnews)}
 <div class="news__types">
 	{foreach $subnews as $submenu}

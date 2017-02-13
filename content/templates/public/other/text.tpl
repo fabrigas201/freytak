@@ -44,7 +44,7 @@
 				{if $smarty.server.REQUEST_URI =="/{config('lang.weblang')}/page/podpiska-na-pravovye-novosti"}
 				<div class="container__col hiddenMobile">
 					<div class="form__wrap">
-						<form action="{get_url('contact/subscribe')}" method="POST" class="form form_page">
+						<form action="{get_url(config('lang.weblang'),'contact/subscribe')}" method="POST" class="form form_page">
 							<input name="url" type="hidden" value="{get_url($smarty.server.REQUEST_URI)}">
 							<div class="form__line" style="display:none;">
 								<div class="form__field">
@@ -54,22 +54,22 @@
 							<div class="form__border">
 								<div class="form__line">
 									<div class="form__field">
-										<input name="name" type="text" placeholder="Как к Вам обращаться">
+										<input name="name" type="text" placeholder="{__('how_to_address_you')}">
 									</div>
 								</div>
 								<div class="form__line">
 									<div class="form__field">
-										<input name="phone" type="text" placeholder="Ваш телефон">
+										<input name="phone" type="text" placeholder="{__('your_phone')}">
 									</div>
 								</div>
 								<div class="form__line">
 									<div class="form__field">
-										<input name="email" type="text" placeholder="Ваш E-mail">
+										<input name="email" type="text" placeholder="{__('how_to_address_you')}">
 									</div>
 								</div>
 							</div>
 							<label class="form__submit linkTriangle">
-								<input type="submit" value="Отправить " class="form__submitInput">
+								<input type="submit" value="{__('send')}" class="form__submitInput">
 							</label>
 						</form>
 					</div>

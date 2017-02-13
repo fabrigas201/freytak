@@ -4,8 +4,8 @@
 	<a href="" class="header__lang">eng</a>
 </div>
 <a href="{get_url(config('lang.weblang'),'index_buro')}" class="logo arno">
-	фрейтак и сыновья
-	<span class="logo__about logo__about_index">корпорация</span>
-	<span class="logo__about logo__about_inner">бюро присяжных поверенных</span>
+	{__('freytak_and_sons')}
+	<span class="logo__about logo__about_index">{__('corporation')}</span>
+	<span class="logo__about logo__about_inner">{__('bureau_attorneys')}</span>
 </a>
-<div class="search__open">поиск</div>
+<div class="search__open">{__('search')}</div>

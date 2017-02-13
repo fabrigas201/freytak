@@ -61,7 +61,7 @@ class Vacancy extends BaseController{
 
 		// Хлебные крошки
 		$breadcrumbs = [];
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">Главная</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		if(is_array($bread)){
 			foreach($bread as $item){
 				

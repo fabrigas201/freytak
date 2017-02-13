@@ -1,20 +1,20 @@
 <div class="menu__block ourProjects">
-	<div class="menu__title arno">Наши проекты</div>
+	<div class="menu__title arno">{__('our_Projects')}</div>
 	
 	<a href="" class="post post_menu">
-		<span class="post__title">Вычет НДС в более позднем периоде в форуме «НДС»</span>
-		<span class="post__author">Автор: Newsmaker</span>
+		<span class="post__title">{__('Deduction_of_VAT')}</span>
+		<span class="post__author">{__('author')}: {__('author_1')}</span>
 	</a>
 	<a href="" class="post post_menu">
-		<span class="post__title">Учет затрат у Застройщика в форуме «Налог на прибыль»</span>
-		<span class="post__author">Автор: Надежда Крыльцова</span>
+		<span class="post__title">{__('Cost_accounting')}</span>
+		<span class="post__author">{__('author')}: {__('author_2)}</span>
 	</a>
 	<a href="" class="post post_menu post_last">
-		<span class="post__title">Восстановление НДС по недвижимости. в форуме «НДС»</span>
-		<span class="post__author">Автор: Надежда Крыльцова</span>
+		<span class="post__title">{__('Recovery_of_VAT')}</span>
+		<span class="post__author">{__('author')}: {__('author_3')}</span>
 	</a>
 
 	<a href="" class="linkTriangle linkTriangle_menu">
-		<span class="linkTriangle__text">подробнее</span>
+		<span class="linkTriangle__text">{__('more')}</span>
 	</a>
 </div>

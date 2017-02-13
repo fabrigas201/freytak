@@ -23,13 +23,13 @@
 					{if !empty($results) }
 						{foreach $results as $v}
 						<div class="post post_news">
-							<a href="{get_url(config('lang.weblang'), 'article')}/{$v -> alias}" class="post__title arno">{$v -> title}</a>
+							<a href="{get_url(config('lang.weblang'), 'article', $v -> alias)" class="post__title arno">{$v -> title}</a>
 							<div class="post__text">
 								<p>{$v -> descr}</p>
 							</div>
 							<div class="linkWrap">
-								<a href="{get_url(config('lang.weblang'), 'article')}/{$v -> alias}" class="linkTriangle linkTriangle_line">
-									<span class="linkTriangle__text">подробнее</span>
+								<a href="{get_url(config('lang.weblang'), 'article', $v -> alias)}}" class="linkTriangle linkTriangle_line">
+									<span class="linkTriangle__text">{__('more')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>

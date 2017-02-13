@@ -98,7 +98,7 @@ class Home extends BaseController {
 		]);
 		
 		$vars = [
-			'title'     => 'Бюро присяжных поверенных',
+			'title'     => __('bureau_attorneys'),
 			'news_1'    => $news_1,
 			'news_2'    => $news_2,
 			'news_3'    => $news_3,

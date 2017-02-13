@@ -164,7 +164,7 @@ class BaseController extends Controller {
 		
 		
 		$vars = [
-			'mainTitle' 	=> 'Бюро присяжных поверенных "Фрейтак и Сыновья"',
+			'mainTitle' 	=> __('bureau_attorneys') .' "'.__('freytak_and_sons').'"',
 			'topMenu'   	=> $topMenu,
 			'practics'  	=> $practics,
 			'subBuro'		=> $subBuro,
