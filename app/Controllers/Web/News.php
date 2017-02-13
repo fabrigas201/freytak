@@ -132,8 +132,12 @@ class News extends BaseController{
 		if(empty($result)){
 			return new NotFoundException;
 		}
-		
-		
+
+		$sqlParams = [
+			'dateAdd' => $result -> updated_at,
+			'categories' => $result -> categories
+			
+		];
 		
 		$itemPrev = $newsModel -> ItemPrev($sqlParams);
 		$itemNext = $newsModel -> itemNext($sqlParams);

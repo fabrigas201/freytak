@@ -27,7 +27,7 @@ class NewsModel{
 		
 		
 		
-		$sql .= ' ORDER BY  `an`.`dateAdd` DESC ';
+		$sql .= ' ORDER BY  `an`.`id` DESC ';
 		
 
 		if (isset($data['start']) || isset($data['limit'])) {
@@ -105,7 +105,7 @@ class NewsModel{
 			$sql .= ' AND  `an`.`inCalendar`="'.$data['inCalendar'].'" ';
 		}
 		
-		$sql .= ' ORDER BY  `an`.`dateAdd` DESC ';
+		$sql .= ' ORDER BY  `an`.`id` DESC ';
 		
 		$query = DB::query($sql);
 		
@@ -121,9 +121,6 @@ class NewsModel{
 		if(!$data['menu_id']) return false;
 
 		$m = __('date');
-		
-		//LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`)
-		
 		
 		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`id`, `an`.`dateAdd`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news" ';
 		
@@ -188,7 +185,7 @@ class NewsModel{
 			return;
 		}
 		
-		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`id`, `an`.`dateAdd`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` < "'.$dateAdd.'" ORDER BY `an`.`dateAdd` DESC LIMIT 1';
+		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` < "'.$dateAdd.'" ORDER BY `an`.`id` DESC LIMIT 1';
 		
 		
 		return DB::query($sql) -> row;
@@ -206,7 +203,7 @@ class NewsModel{
 			return;
 		}
 		
-		$sql = 'SELECT `id`, `for_smi`,`name`,`dateAdd`, `descr`, `descrfull`, `alias`, `categories` FROM '.$this->mainTbl.' WHERE `categories`="'.$categories.'" AND `dateAdd` > "'.$dateAdd.'" ORDER BY `dateAdd` ASC LIMIT 1';;
+		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`posi`, `an`.`categories`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` > "'.$dateAdd.'" ORDER BY `an`.`id` ASC LIMIT 1';
 		
 		return DB::query($sql) -> row;
 	}

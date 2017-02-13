@@ -63,12 +63,12 @@
 					<div class="container__row">
 						{if !empty($prev_item)}
 						<div class="post post_news container__col">
-							<a href="{get_url('item')}/{$prev_item -> alias}" class="post__title arno">{$prev_item -> name}</a>
+							<a href="{get_url(config('lang.weblang'), 'item', $prev_item -> alias)}" class="post__title arno">{$prev_item -> title}</a>
 							<div class="post__text">
 								<p>{$prev_item -> descr}</p>
 							</div>
 							<div class="linkWrap">
-								<a href="{get_url('item')}/{$prev_item -> alias}" class="linkTriangle linkTriangle_line">
+								<a href="{get_url(config('lang.weblang'), 'item', $prev_item -> alias)}" class="linkTriangle linkTriangle_line">
 									<span class="linkTriangle__text">{__('previous_news')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
@@ -80,12 +80,12 @@
 						{/if}
 						{if !empty($next_item)}
 						<div class="post post_news container__col">
-							<a href="{get_url('item')}/{$next_item -> alias}" class="post__title arno">{$next_item -> name}</a>
+							<a href="{get_url(config('lang.weblang'), 'item', $next_item -> alias)}" class="post__title arno">{$next_item -> title}</a>
 							<div class="post__text">
 								<p>{$next_item -> descr}</p>
 							</div>
 							<div class="linkWrap">
-								<a href="{get_url('item')}/{$next_item -> alias}" class="linkTriangle linkTriangle_line">
+								<a href="{get_url(config('lang.weblang'), 'item', $next_item -> alias)}" class="linkTriangle linkTriangle_line">
 									<span class="linkTriangle__text">{__('next_news')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
