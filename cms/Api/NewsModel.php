@@ -105,12 +105,7 @@ class NewsModel{
 			$sql .= ' AND  `an`.`inCalendar`="'.$data['inCalendar'].'" ';
 		}
 		
-		
-		
-		
 		$sql .= ' ORDER BY  `an`.`dateAdd` DESC ';
-		
-		
 		
 		$query = DB::query($sql);
 		
@@ -125,20 +120,7 @@ class NewsModel{
 		$id = preg_replace('/[^0-9a-z_-]+/i','',trim($data['menu_id']));
 		if(!$data['menu_id']) return false;
 
-		$m = [
-			'01'=>'января',
-			'02'=>'февраля',
-			'03'=>'марта',
-			'04'=>'апреля',
-			'05'=>'мая',
-			'06'=>'июня',
-			'07'=>'июля',
-			'08'=>'августа',
-			'09'=>'сентября',
-			'10'=>'октября',
-			'11'=>'ноября',
-			'12'=>'декабря',
-		];
+		$m = __('date');
 		
 		//LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`)
 		

@@ -79,20 +79,7 @@ class HistoryModel{
 		if(!$data['menu_id']) return false;
 
 		
-		$m = [
-			'01'=>'января',
-			'02'=>'февраля',
-			'03'=>'марта',
-			'04'=>'апреля',
-			'05'=>'мая',
-			'06'=>'июня',
-			'07'=>'июля',
-			'08'=>'августа',
-			'09'=>'сентября',
-			'10'=>'октября',
-			'11'=>'ноября',
-			'12'=>'декабря',
-		];
+		$m = __('date');
 		
 		$sql = 'SELECT `an`.`id`,`an`.`dateAdd`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="history" AND `an`.`isHidden`="0"';
 		

@@ -51,20 +51,7 @@ class Articles extends Trees{
 	}
 	
 	public function getByIdForMenu($sqlParam = []){
-		$m = [
-			'01'=>'января',
-			'02'=>'февраля',
-			'03'=>'марта',
-			'04'=>'апреля',
-			'05'=>'мая',
-			'06'=>'июня',
-			'07'=>'июля',
-			'08'=>'августа',
-			'09'=>'сентября',
-			'10'=>'октября',
-			'11'=>'ноября',
-			'12'=>'декабря',
-		];
+		$m = __('date');
 
 		if(!isset($sqlParam['id']) || empty($sqlParam['id'])){
 			return false;
@@ -503,20 +490,7 @@ class Articles extends Trees{
 	
 	
 	public function getByContactForMenu($sqlParam = []){
-		$m = [
-			'01'=>'января',
-			'02'=>'февраля',
-			'03'=>'марта',
-			'04'=>'апреля',
-			'05'=>'мая',
-			'06'=>'июня',
-			'07'=>'июля',
-			'08'=>'августа',
-			'09'=>'сентября',
-			'10'=>'октября',
-			'11'=>'ноября',
-			'12'=>'декабря',
-		];
+		$m = __('date');
 
 		if(!isset($sqlParam['id']) || empty($sqlParam['id'])){
 			return false;
