@@ -37,26 +37,29 @@
 							</a>
 
 						{if !empty($news_1) }
+							{foreach $news_1 as $item}
+							
 							<div class="info__text">
-								<p>{$news_1->descr}</p>
+								<p>{$item->descr}</p>
 							</div>
 
 							<div class="linkWrap">
-								<a href="{get_url(config('lang.weblang'), 'item', $news_1->alias)}" class="linkTriangle linkTriangle_line">
+								<a href="{get_url(config('lang.weblang'), 'item', $item->alias)}" class="linkTriangle linkTriangle_line">
 									<span class="linkTriangle__text">{__('more')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>
 							<div class="info__about">
 
-							{if isset($news_1->dateAdd) && $news_1->dateAdd != '0000-00-00 00:00:00'}
-								{$news_1->dateAdd} {__('years')}
+							{if isset($item->dateAdd) && $item->dateAdd != '0000-00-00 00:00:00'}
+								{date_to($item->dateAdd)} {__('years')}
 							{/if}
-							{if isset($news_1->for_smi)}
-								| <i>для "{$news_1->for_smi}"</i>
+							{if isset($item->for_smi)}
+								| <i>для "{$item->for_smi}"</i>
 							{/if}
 
 							</div>
+							{/foreach}
 						{else}
 							<b>{__('the_list_is_empty')}</b>
 						{/if}
@@ -69,26 +72,29 @@
 							</a>
 
 						{if !empty($news_2) }
+							{foreach $news_2 as $item}
+							
 							<div class="info__text">
-								<p>{$news_2->descr}</p>
+								<p>{$item->descr}</p>
 							</div>
 
 							<div class="linkWrap">
-								<a href="{get_url(config('lang.weblang'),'item', $news_2->alias)}" class="linkTriangle linkTriangle_line">
+								<a href="{get_url(config('lang.weblang'), 'item', $item->alias)}" class="linkTriangle linkTriangle_line">
 									<span class="linkTriangle__text">{__('more')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>
 							<div class="info__about">
 
-							{if isset($news_2->dateAdd) && $news_2->dateAdd != '0000-00-00 00:00:00'}
-								{$news_2->dateAdd} {__('years')}
+							{if isset($item->dateAdd) && $item->dateAdd != '0000-00-00 00:00:00'}
+								{date_to($item->dateAdd)} {__('years')}
 							{/if}
-							{if isset($news_2->for_smi)}
-								| <i>для "{$news_2->for_smi}"</i>
+							{if isset($item->for_smi)}
+								| <i>для "{$item->for_smi}"</i>
 							{/if}
 
 							</div>
+							{/foreach}
 						{else}
 							<b>{__('the_list_is_empty')}</b>
 						{/if}
@@ -101,26 +107,29 @@
 							</a>
 
 						{if !empty($news_3) }
+							{foreach $news_3 as $item}
+							
 							<div class="info__text">
-								<p>{$news_3->descr}</p>
+								<p>{$item->descr}</p>
 							</div>
 
 							<div class="linkWrap">
-								<a href="{get_url(config('lang.weblang'),'item', $news_3->alias)}" class="linkTriangle linkTriangle_line">
+								<a href="{get_url(config('lang.weblang'), 'article', $item->alias)}" class="linkTriangle linkTriangle_line">
 									<span class="linkTriangle__text">{__('more')}</span>
 									<span class="linkTriangle__line"></span>
 								</a>
 							</div>
 							<div class="info__about">
 
-							{if isset($news_3->dateAdd) && $news_3->dateAdd != '0000-00-00 00:00:00'}
-								{$news_3->dateAdd} {__('years')}
+							{if isset($item->dateAdd) && $item->dateAdd != '0000-00-00 00:00:00'}
+								{date_to($item->dateAdd)} {__('years')}
 							{/if}
-							{if isset($news_3->for_smi)}
-								| <i>для "{$news_3->for_smi}"</i>
+							{if isset($item->for_smi)}
+								| <i>для "{$item->for_smi}"</i>
 							{/if}
 
 							</div>
+							{/foreach}
 						{else}
 							<b>{__('the_list_is_empty')}</b>
 						{/if}

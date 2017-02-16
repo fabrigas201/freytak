@@ -79,18 +79,22 @@ class Home extends BaseController {
 		// формируем новости
 		
 		$newsModel = new NewsModel();
-		$news_1 = $newsModel -> getNewsItem([
+		
+		
+		$news_1 = $newsModel -> getNews([
 			'menu_id' => 120,
+			'limit' => 1
 		]);
-		
-		$news_2 = $newsModel -> getNewsItem([
+
+		$news_2 = $newsModel -> getNews([
 			'menu_id' => 121,
+			'limit' => 1
 		]);
-		
 		
 		$articlesModel = new ArticlesModel();
-		$news_3 = $articlesModel -> getArticle([
+		$news_3 = $articlesModel -> getArticles([
 			'menu_id' => 129,
+			'limit' => 1
 		]);
 		
 		$treatment = $articlesModel -> getArticle([

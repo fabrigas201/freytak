@@ -32,8 +32,6 @@ class NewsModel{
 			$sql .= ' ORDER BY  `an`.`id` DESC ';
 		}
 		
-		
-		
 
 		if (isset($data['start']) || isset($data['limit'])) {
 			if(!isset($data['start'])){
