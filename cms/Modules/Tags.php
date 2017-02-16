@@ -188,18 +188,18 @@ class Tags extends Modules {
 		
 		foreach($request -> post('field') as $lang => $field){
 			if(isset($_POST['field'][$lang]['name']) && !empty($_POST['field'][$lang]['name'])){
-				$sql_query_data['langs'][$lang]['title'] = trim(addslashes($_POST['field'][$lang]['name']));
+				$sql_query_data['langs'][$lang]['title'] = trim($_POST['field'][$lang]['name']);
 			}else{
 				$this -> errors[$lang]['noName']='Не указано наименование';
 			}
 			
 			if(isset($_POST['field'][$lang]['descr'])){
-				$sql_query_data['langs'][$lang]['descr'] = addslashes($_POST['field'][$lang]['descr']);
+				$sql_query_data['langs'][$lang]['descr'] = $_POST['field'][$lang]['descr'];
 			}	
 		}
 		
 		if(isset($_POST['alias']) && !empty($_POST['alias'])){
-			$sql_query_data['base']['alias'] = trim(addslashes($_POST['alias']));
+			$sql_query_data['base']['alias'] = trim($_POST['alias']);
 		}else{
 			$this -> errors['noAlias']='Не указан Alias';
 		}

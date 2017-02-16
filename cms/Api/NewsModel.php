@@ -18,14 +18,11 @@ class NewsModel{
 			}else{
 				$sql .= 'AND `amd`.`alias`="'.$id.'" ';
 			}
-			
-			if (isset($data['inCalendar'])) {
-				$sql .= ' AND  `an`.`inCalendar`="'.$data['inCalendar'].'" ';
-			}
 		}
 		
-		
-		
+		if (isset($data['inCalendar'])) {
+			$sql .= ' AND  `an`.`inCalendar`="'.$data['inCalendar'].'" ';
+		}
 		
 		$sql .= ' ORDER BY  `an`.`id` DESC ';
 		

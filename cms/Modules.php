@@ -39,7 +39,7 @@ class Modules extends Controller {
 		if($request -> post('field') != null){
 			foreach($request -> post('field') as $lang => $field){
 				if(isset($_POST['field'][$lang]['name']) && !empty($_POST['field'][$lang]['name'])){
-					$sql_query_data['langs'][$lang]['title'] = trim(addslashes($_POST['field'][$lang]['name']));
+					$sql_query_data['langs'][$lang]['title'] = trim($_POST['field'][$lang]['name']);
 					
 					
 					$alias = getAlias($_POST['field'][$lang]['name'], $_POST['field'][$lang]['alias']);
@@ -61,10 +61,10 @@ class Modules extends Controller {
 
 				
 				if(isset($_POST['field'][$lang]['metaD'])){
-					$sql_query_data['langs'][$lang]['metaD'] = addslashes($_POST['field'][$lang]['metaD']);
+					$sql_query_data['langs'][$lang]['metaD'] = $_POST['field'][$lang]['metaD'];
 				}
 				if(isset($_POST['field'][$lang]['metaK'])){
-					$sql_query_data['langs'][$lang]['metaK'] = addslashes($_POST['field'][$lang]['metaK']);
+					$sql_query_data['langs'][$lang]['metaK'] = $_POST['field'][$lang]['metaK'];
 				}
 			}
 		}
@@ -110,7 +110,7 @@ class Modules extends Controller {
 		}
 		
 		if($request -> get('mod')){
-			$sql_query_data['base']['mod'] 	= trim(addslashes($request -> get('mod')));
+			$sql_query_data['base']['mod'] 	= trim($request -> get('mod'));
 		}else{
 			$sql_query_data['base']['mod']	= '';
 		}

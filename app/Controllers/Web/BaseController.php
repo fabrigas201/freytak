@@ -103,7 +103,7 @@ class BaseController extends Controller {
 		// События для календаря
 		$event = new NewsModel();
 		$events = $event -> getNews($sqlParams);
-		
+
 		// Галлерея исторической слава фотографии
 		$historyModel = new HistoryModel();
 		$historyModel -> image_table = 'a_shop_images';

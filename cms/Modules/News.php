@@ -419,7 +419,7 @@ class News extends Modules {
 		
 		foreach($request -> post('field') as $lang => $field){
 			if(isset($_POST['field'][$lang]['name']) && !empty($_POST['field'][$lang]['name'])){
-				$sql_query_data['langs'][$lang]['title'] = trim(addslashes($_POST['field'][$lang]['name']));
+				$sql_query_data['langs'][$lang]['title'] = trim($_POST['field'][$lang]['name']);
 				
 				// Устаналиваем alias
 				$alias = getAlias($_POST['field'][$lang]['name'], $_POST['field'][$lang]['alias']);
@@ -431,17 +431,17 @@ class News extends Modules {
 			}
 			
 			if(isset($_POST['field'][$lang]['descr'])){
-				$sql_query_data['langs'][$lang]['descr'] = addslashes($_POST['field'][$lang]['descr']);
+				$sql_query_data['langs'][$lang]['descr'] = ($_POST['field'][$lang]['descr']);
 			}
 			
 			if(isset($_POST['field'][$lang]['descrfull'])){
-				$sql_query_data['langs'][$lang]['descrfull'] = addslashes($_POST['field'][$lang]['descrfull']);
+				$sql_query_data['langs'][$lang]['descrfull'] = ($_POST['field'][$lang]['descrfull']);
 			}
 			if(isset($_POST['field'][$lang]['metaD'])){
-				$sql_query_data['langs'][$lang]['metaD'] = addslashes($_POST['field'][$lang]['metaD']);
+				$sql_query_data['langs'][$lang]['metaD'] = ($_POST['field'][$lang]['metaD']);
 			}
 			if(isset($_POST['field'][$lang]['metaK'])){
-				$sql_query_data['langs'][$lang]['metaK'] = addslashes($_POST['field'][$lang]['metaK']);
+				$sql_query_data['langs'][$lang]['metaK'] = ($_POST['field'][$lang]['metaK']);
 			}
 				
 		}
@@ -479,7 +479,7 @@ class News extends Modules {
 		}
 		
 		if($request -> get('mod')){
-			$sql_query_data['base']['mod'] 	= trim(addslashes($request -> get('mod')));
+			$sql_query_data['base']['mod'] 	= trim($request -> get('mod'));
 		}else{
 			$sql_query_data['base']['mod']	= '';
 		}

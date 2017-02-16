@@ -422,7 +422,7 @@ class Menu extends Modules {
 		
 		foreach($request -> post('field') as $lang => $field){
 			if(isset($_POST['field'][$lang]['name']) && !empty($_POST['field'][$lang]['name'])){
-				$sql_query_data['langs'][$lang]['title'] = trim(addslashes($_POST['field'][$lang]['name']));
+				$sql_query_data['langs'][$lang]['title'] = trim($_POST['field'][$lang]['name']);
 				
 				if(empty($_POST['field'][$lang]['alias'])){
 					// Устаналиваем alias
@@ -430,7 +430,7 @@ class Menu extends Modules {
 					$alias = checkAlias($alias, $request -> get('id'), $lang);
 					$sql_query_data['langs'][$lang]['alias'] = $alias;
 				}else{
-					$sql_query_data['langs'][$lang]['alias'] = trim(addslashes($_POST['field'][$lang]['alias']));
+					$sql_query_data['langs'][$lang]['alias'] = trim($_POST['field'][$lang]['alias']);
 				}
 				
 				
@@ -439,19 +439,19 @@ class Menu extends Modules {
 			}
 			
 			if(isset($_POST['field'][$lang]['description'])){
-				$sql_query_data['langs'][$lang]['description'] = addslashes($_POST['field'][$lang]['description']);
+				$sql_query_data['langs'][$lang]['description'] = $_POST['field'][$lang]['description'];
 			}
 			
 			if(isset($_POST['field'][$lang]['descrfull'])){
-				$sql_query_data['langs'][$lang]['text'] = addslashes($_POST['field'][$lang]['descrfull']);
+				$sql_query_data['langs'][$lang]['text'] = $_POST['field'][$lang]['descrfull'];
 			}
 			
 			
 			if(isset($_POST['field'][$lang]['metaD'])){
-				$sql_query_data['langs'][$lang]['metaD'] = addslashes(htmlspecialchars($_POST['field'][$lang]['metaD'],ENT_QUOTES));
+				$sql_query_data['langs'][$lang]['metaD'] = htmlspecialchars($_POST['field'][$lang]['metaD'],ENT_QUOTES);
 			}
 			if(isset($_POST['field'][$lang]['metaK'])){
-				$sql_query_data['langs'][$lang]['metaK'] = addslashes(htmlspecialchars($_POST['field'][$lang]['metaK'],ENT_QUOTES));
+				$sql_query_data['langs'][$lang]['metaK'] = htmlspecialchars($_POST['field'][$lang]['metaK'],ENT_QUOTES);
 			}
 				
 		}
