@@ -3,7 +3,7 @@
 <div class="menu__block realProjects">
 	<div class="menu__title arno">{__('our_Projects')}</div>
 	{foreach $projectsData as $project}
-	<a href="{get_url(config('lang.weblang'), 'article', $project -> alias)}" class="post post_menu">
+	<a href="{get_url($project -> lang, 'article', $project -> alias)}" class="post post_menu">
 		<span class="post__title">{$project -> title}</span>
 	</a>
 	{/foreach}

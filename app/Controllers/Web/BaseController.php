@@ -109,13 +109,13 @@ class BaseController extends Controller {
 		// Наши проекты
 		$sqlParams = [];
 		$sqlParams['menu_id'] = 115;
-		//$sqlParams['limit'] = 5;
+		$sqlParams['limit'] = 4;
 		//$sqlParams['sort'] = 'date_events_desc';
 		//$sqlParams['inCalendar'] = '1';
 		
 		$myProjects = new ArticlesModel();
 		$projects = $myProjects -> getArticles($sqlParams);
-		
+
 		// Галлерея исторической слава фотографии
 		$historyModel = new HistoryModel();
 		$historyModel -> image_table = 'a_shop_images';
