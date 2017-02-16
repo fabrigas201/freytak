@@ -106,10 +106,15 @@
 
 							{if isset($subBuro)}
 								<ul class="nav__second">
-								{foreach $subBuro as $menu}
-									{if $menu -> alias == 'podpiska-na-pravovye-novosti'}{continue}{/if}
+								{foreach $subBuro as $item}
+									{if $item -> alias == 'podpiska-na-pravovye-novosti'}{continue}{/if}
 									<li class="nav__item nav__item_second">
-										<a href="{get_url(config('lang.weblang'), $menu -> typeMenu, $menu -> alias)}" class="nav__link nav__link_second">{$menu -> title}</a>
+										{if preg_match("/^(http:|https:)\/\//", $item -> alias)}
+											<a href="{$item->alias}" class="nav__link nav__link_second">{$item->title}</a>
+										{else}
+											<a href="{get_url(config('lang.weblang'),$item->typeMenu,$item->alias )}" class="nav__link nav__link_second">{$item->title}</a>
+										{/if}
+										
 									</li>
 								{/foreach}
 								</ul>
@@ -136,7 +141,11 @@
 								<ul class="nav__second">
 								{foreach $subInfo as $item}
 									<li class="nav__item nav__item_second">
-										<a href="{get_url(config('lang.weblang'),$item->typeMenu,$item->alias )}" class="nav__link nav__link_second">{$item->title}</a>
+										{if preg_match("/^(http:|https:)\/\//", $item -> alias)}
+											<a href="{$item->alias}" class="nav__link nav__link_second">{$item->title}</a>
+										{else}
+											<a href="{get_url(config('lang.weblang'),$item->typeMenu,$item->alias )}" class="nav__link nav__link_second">{$item->title}</a>
+										{/if}
 									</li>
 								{/foreach}
 								</ul>

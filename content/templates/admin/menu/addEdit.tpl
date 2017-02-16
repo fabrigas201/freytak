@@ -41,6 +41,12 @@
 			</td>
 		</tr>
 		<tr>
+			<td width="150" nowrap>URL</td>
+			<td>
+				<input type="text" name="field[{$lang.key}][alias]" value="{if isset($vars['langs'][$lang.key]['alias'])}{$vars['langs'][$lang.key]['alias']}{/if}" class="input" style="width:90%">
+			</td>
+		</tr>
+		<tr>
 			<td width="150" nowrap>Ключевые слова</td>
 			<td><input type="text" name="field[{$lang.key}][metaK]" value="{if isset($vars['langs'][$lang.key]['metaK'])}{$vars['langs'][$lang.key]['metaK']}{/if}" class="input" style="width:90%"></td>
 		</tr>

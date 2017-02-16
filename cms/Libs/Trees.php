@@ -49,6 +49,7 @@ class Trees{
 			
 			
 			foreach($result -> rows as $item){
+				
 				$item->title=$params['prefix'].$item->title;
 				$item->level=$level;
 				if(isset($_GET['action']) && $_GET['action']=='edit' && $item->id==$_GET['id']) continue;
@@ -115,15 +116,22 @@ class Trees{
 				if($item -> alias == 'podpiska-na-pravovye-novosti'){
 					continue;
 				}
-				
-				
-				if($item -> isIndex == 1){
-					$html .= '<a href="'.get_url(config('lang.weblang')).'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
-				}elseif(!empty($item -> typeMenu) && $item -> isIndex != 1){
-					$html .= '<a href="'.get_url(config('lang.weblang'), $item -> typeMenu,$item -> alias).'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
+
+				if(!preg_match("/^(http:|https:)\/\//", $item -> alias)){
+					if($item -> isIndex == 1){
+						$html .= '<a href="'.get_url(config('lang.weblang')).'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
+					}elseif(!empty($item -> typeMenu) && $item -> isIndex != 1){
+						$html .= '<a href="'.get_url(config('lang.weblang'), $item -> typeMenu,$item -> alias).'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
+					}else{
+						$html .= '<a href="'.get_url(config('lang.weblang'),'page',$item -> alias).'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
+					}
 				}else{
-					$html .= '<a href="'.get_url(config('lang.weblang'),'page',$item -> alias).'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
+					$html .= '<a href="'.$item -> alias.'" class="nav__link '.$link_class.'">'.$item -> title.'</a>';
 				}
+				
+				
+				
+				
 				
 				$html .= $this->getTreeMenu($item->id,$params, $level);
 				$html .= '</li">';

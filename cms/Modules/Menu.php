@@ -160,7 +160,7 @@ class Menu extends Modules {
 		$vars['tagsSystem'] = $tagsSystem;
 		
 		$articles -> getTree(0);
-		$articlesList = $articles -> catList;
+		$articlesList = $articles -> getCatList();
 		
 		
 		$imagesFormOpt = [
@@ -224,7 +224,7 @@ class Menu extends Modules {
 				$vars['langs'][$item -> lang]['text'] 			= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: stripslashes($item -> text);
 				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: stripslashes($item -> metaD);
 				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: stripslashes($item -> metaK);
-				//$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: stripslashes($item -> alias);
+				$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: stripslashes($item -> alias);
 				//$vars['langs'][$item -> lang]['for_smi'] 		= $_POST ? $_POST['field'][$item -> lang]['for_smi'] 	: stripslashes($item -> for_smi);
 				//$vars['langs'][$item -> lang]['description']	= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: stripslashes($item -> description);
 			}
@@ -424,11 +424,13 @@ class Menu extends Modules {
 			if(isset($_POST['field'][$lang]['name']) && !empty($_POST['field'][$lang]['name'])){
 				$sql_query_data['langs'][$lang]['title'] = trim(addslashes($_POST['field'][$lang]['name']));
 				
-				if(isset($_POST['field'][$lang]['alias'])){
+				if(empty($_POST['field'][$lang]['alias'])){
 					// Устаналиваем alias
 					$alias = getAlias($_POST['field'][$lang]['name'], $_POST['field'][$lang]['alias']);
 					$alias = checkAlias($alias, $request -> get('id'), $lang);
 					$sql_query_data['langs'][$lang]['alias'] = $alias;
+				}else{
+					$sql_query_data['langs'][$lang]['alias'] = trim(addslashes($_POST['field'][$lang]['alias']));
 				}
 				
 				
