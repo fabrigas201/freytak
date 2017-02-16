@@ -11,7 +11,7 @@ class ArticlesModel{
 		if(!$data['menu_id']) return false;
 
 		
-		$sql = 'SELECT `amd`.`alias` as `menu_alias`, `amd`.`menu_id`, `an`.`id`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" ';
+		$sql = 'SELECT `amd`.`alias` as `menu_alias`, `amd`.`menu_id`, `an`.`id`, `an`.`mod`, `an`.`isHidden`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" ';
 		
 		if(is_numeric($data['menu_id'])){
 			$sql .= 'AND `amd`.`menu_id`='.$data['menu_id'].' ';
@@ -19,6 +19,7 @@ class ArticlesModel{
 			$sql .= 'AND `amd`.`alias`="'.$data['menu_id'].'" ';
 		}
 		
+		$sql .= ' ORDER BY `an`.`id` DESC ';
 		
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {
@@ -69,8 +70,6 @@ class ArticlesModel{
 		return null;
 	}
 	
-	
-	
 	public function getArticle($data = []){
 		$id = preg_replace('/[^0-9a-z_-]+/i','',trim($data['menu_id']));
 		if(!$data['menu_id']) return false;
@@ -118,6 +117,11 @@ class ArticlesModel{
 	}
 	
 	
-
+	public function getAliasArticles($id){	
+		$sql = 'SELECT `news_id`, `lang`, `id`, `alias` FROM `a_news_description` WHERE `news_id`='.$id;
+		return DB::query($sql) -> rows;
+	}
+	
+	
 
 }

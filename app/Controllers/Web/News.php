@@ -129,6 +129,20 @@ class News extends BaseController{
 		$newsModel	-> image_table = 'a_shop_images';
 		$result 	= $newsModel -> getNewsItem($sqlParams);
 	   
+		$aliases  =$newsModel -> getAliasNews($result -> id);
+	   
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'item', $alias -> alias)
+				];
+			}
+		}
+	   
 		if(empty($result)){
 			return new NotFoundException;
 		}
@@ -180,6 +194,7 @@ class News extends BaseController{
 			'metaD' => $result -> metaD,
 			'prev_item' => $itemPrev,
 			'next_item' => $itemNext,
+			'langs' => $langs
 			
 		];
 		

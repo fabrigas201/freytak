@@ -7,6 +7,7 @@ use Cms\View;
 use Cms\Config;
 use Cms\Api\NewsModel;
 use Cms\Api\HistoryModel;
+use Cms\Api\ArticlesModel;
 use Cms\Language;
 
 
@@ -105,6 +106,16 @@ class BaseController extends Controller {
 		$event = new NewsModel();
 		$events = $event -> getNews($sqlParams);
 
+		// Наши проекты
+		$sqlParams = [];
+		$sqlParams['menu_id'] = 115;
+		//$sqlParams['limit'] = 5;
+		//$sqlParams['sort'] = 'date_events_desc';
+		//$sqlParams['inCalendar'] = '1';
+		
+		$myProjects = new ArticlesModel();
+		$projects = $myProjects -> getArticles($sqlParams);
+		
 		// Галлерея исторической слава фотографии
 		$historyModel = new HistoryModel();
 		$historyModel -> image_table = 'a_shop_images';
@@ -172,6 +183,7 @@ class BaseController extends Controller {
 			'subInfo'		=> $subInfo,
 			'menuFooter'	=> $menuFooter,
 			'events'    	=> $events,
+			'projectsData'	=> $projects,
 			'historyAvatars'=> $historyAvatars,
 			'f_links'       => isset($flinks) ? $flinks : false,
 			'f_name'        => isset($f_name) ? $f_name : false,

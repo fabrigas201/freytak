@@ -1,7 +1,10 @@
 <div class="header__langs">
-	<a href="" class="header__lang header__lang_active">руc</a>
-	\
-	<a href="" class="header__lang">eng</a>
+{if isset($langs)}
+	{foreach $langs as $ml name=langsCicle}
+	<a href="{$ml.href}" class="header__lang {if $ml.lang == $segment}header__lang_active{/if}">{if $ml.lang == 'ru'}РУС{elseif $ml.lang == 'en'}ENG{/if}</a>
+	{if !$smarty.foreach.langsCicle.last}/{/if}
+	{/foreach}
+{/if}
 </div>
 <a href="{get_url(config('lang.weblang'),'index_buro')}" class="logo arno">
 	{__('freytak_and_sons')}

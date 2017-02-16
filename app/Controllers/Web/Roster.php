@@ -154,6 +154,22 @@ class Roster extends BaseController{
 		$articlesModel -> image_table = 'a_shop_images';
 		$result = $articlesModel -> getArticle($sqlParams);
 	   
+	   
+		$aliases  =$articlesModel -> getAliasArticles($result -> id);
+	   
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'article', $alias -> alias)
+				];
+			}
+		}
+	   
+	   
 		if(empty($result)){
 			return new NotFoundException;
 		}
@@ -192,6 +208,7 @@ class Roster extends BaseController{
 			'segment' => $request -> segment(1),
 			'metaK' => stripslashes($result -> metaK),
 			'metaD' => stripslashes($result -> metaD),
+			'langs' => $langs
 		];
 		
 		if(!empty($result -> cover)){
