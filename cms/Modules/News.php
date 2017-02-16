@@ -2,6 +2,7 @@
 
 use Cms\Modules;
 use Cms\Libs\Wysiwyg;
+use Cms\Libs\Trees;
 use Cms\Api\Shop;
 use Cms\Api\Articles;
 use Cms\Libs\Pagination;
@@ -148,10 +149,16 @@ class News extends Modules {
 
 		$forms['imagesForm'] = imageForm($imagesFormOpt);
 		
+		$articles = new Trees();
+		$articles -> getTree(0);
+		$articlesList = $articles -> getCatList();
+		
+		
 		$data = [
 			'title' => 'Добавить новость',
 			'wysiwygScript' => $this -> wysiwyg -> getScript(),
 			'forms' => $forms,
+			'menu' => $articlesList,
 			'errors' => $this -> errors,
 			'save_and_list' => 'Добавить и вернуться к списку',
 			'save_and_edit' => 'Добавить и продолжить редактирование',
@@ -361,11 +368,10 @@ class News extends Modules {
 		$forms['imagesForm'] = imageForm($imagesFormOpt);
 		
 		
-		$articles = new Articles(PREFIX.'_menu');
-		$articles -> mainTbl=PREFIX.'_menu';
+		$articles = new Trees();
 		$articles -> getTree(0);
-		$articlesList = $articles -> catList;
-		
+		$articlesList = $articles -> getCatList();
+
 		$data = [
 			'title' 		=> 'Редактирование новости',
 			'wysiwygScript' => $this -> wysiwyg -> getScript(),
