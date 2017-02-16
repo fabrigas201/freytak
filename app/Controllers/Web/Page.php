@@ -34,6 +34,10 @@ class Page extends BaseController{
 		$pageMenu = Pages::getPage($id);
 		$pages = Pages::getPageWeb($sqlParams);
 		
+		if(empty($pageMenu)){
+			return new NotFoundException;
+		}
+		
 		// Хлебные крошки
 		$breadcrumbs = [];
 		
@@ -66,9 +70,9 @@ class Page extends BaseController{
 		
 
 		$vars = [
-			'title' => isset($pages -> title) ? $pages -> title : '',
-			'metaK' => isset($pages -> metaK) ? $pages -> metaK : '',
-			'metaD' => isset($pages -> metaD) ? $pages -> metaD : '',
+			'title' => isset($pageMenu -> title) ? stripslashes($pageMenu -> title) : '',
+			'metaK' => isset($pageMenu -> metaK) ? stripslashes($pageMenu -> metaK) : '',
+			'metaD' => isset($pageMenu -> metaD) ? stripslashes($pageMenu -> metaD) : '',
 			'result' => $pages,
 			'breadcrumbs' => $breadcrumbs,
 			'segment' => $request -> segment(1),

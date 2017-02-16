@@ -18,17 +18,11 @@ class Roster extends BaseController{
 	public function index(){
 		$request = new Request();
 		
-		
 		$page  = is_numeric($request -> get('page')) ? $request -> get('page') : 1;
 		$limit = 20;
 		
-		if($request -> segment(4) == null){
-			$id = $request -> segment(3);
-		}else{
-			$id = $request -> segment(4);
-		}
-		
-		
+		$id = $request -> segment(3);
+
 		if($request -> get('date')){
 			$date = $request -> get('date');
 		}else{
@@ -66,9 +60,13 @@ class Roster extends BaseController{
 		
 		$pageMenu = Pages::getPage($id);
 		
-		$tree = new Trees(PREFIX.'_menu');
+		if(empty($pageMenu)){
+			return new NotFoundException;
+		}
+		
+		$tree = new Trees();
 		$tree -> getParents($pageMenu -> id);
-		$bread = $tree -> catList;
+		$bread = $tree -> getCatList();
 
 
 		$pagination = new Pagination();
@@ -97,9 +95,9 @@ class Roster extends BaseController{
 		}
 		
 		$vars = [
-			'title' 		=> $pageMenu -> title,
-			'metaD' 		=> $pageMenu -> metaD,
-			'metaK' 		=> $pageMenu -> metaK,
+			'title' 		=> stripslashes($pageMenu -> title),
+			'metaD' 		=> stripslashes($pageMenu -> metaD),
+			'metaK' 		=> stripslashes($pageMenu -> metaK),
 			'results' 		=> $results,
 			'breadcrumbs' 	=> $breadcrumbs,
 			'segment' 		=> $request -> segment(1),
@@ -181,20 +179,20 @@ class Roster extends BaseController{
 					$aliasMenu = get_url(config('lang.weblang'),$item -> typeMenu.'/'.$item -> alias);
 				}
 				
-				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.$item -> title.'</a>';
+				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.stripslashes($item -> title).'</a>';
 			}
 			
 		}
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item/'.$result -> alias).'">'.$result -> title.'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item/'.$result -> alias).'">'.stripslashes($result -> title).'</a>';
 
 		$vars = [
-			'title' => $result -> title,
+			'title' => stripslashes($result -> title),
 			'result' => $result,
 			'breadcrumbs' => $breadcrumbs,
 			'date' => $date,
 			'segment' => $request -> segment(1),
-			'metaK' => $result -> metaK,
-			'metaD' => $result -> metaD,
+			'metaK' => stripslashes($result -> metaK),
+			'metaD' => stripslashes($result -> metaD),
 		];
 		
 		if(!empty($result -> cover)){

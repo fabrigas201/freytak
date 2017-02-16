@@ -117,7 +117,7 @@
 							</li>
 
 							<li class="nav__item">
-								<a href="{get_url(config('lang.weblang'), 'article/nashi-proekty')}" class="nav__link">
+								<a href="{get_url(config('lang.weblang'), 'article/opyt-i-proekty')}" class="nav__link">
 									<span class="arno nav__linkInfo">
 										<span class="nav__linkHelp">{__('experience_and_projects_top')}</span>
 											{__('experience_and_projects_bottom')}

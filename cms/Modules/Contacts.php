@@ -73,12 +73,12 @@ class Contacts extends Modules {
 		
 		if(isset($result['langs'])){
 			foreach($result['langs'] as $item){
-				$vars['langs'][$item -> lang]['name']  			= $_POST ? $_POST['field'][$item -> lang]['name']  		: htmlspecialchars($item -> title, ENT_QUOTES, 'UTF-8');
-				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: $item -> metaD;
-				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: $item -> metaK;
-				$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: $item -> alias;
-				$vars['langs'][$item -> lang]['descr']			= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: $item -> descr;
-				$vars['langs'][$item -> lang]['descrfull'] 		= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: $item -> descrfull;
+				$vars['langs'][$item -> lang]['name']  			= $_POST ? $_POST['field'][$item -> lang]['name']  		: htmlspecialchars(stripslashes($item -> title), ENT_QUOTES, 'UTF-8');
+				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: stripslashes($item -> metaD);
+				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: stripslashes($item -> metaK);
+				$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: stripslashes($item -> alias);
+				$vars['langs'][$item -> lang]['descr']			= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: stripslashes($item -> descr);
+				$vars['langs'][$item -> lang]['descrfull'] 		= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: stripslashes($item -> descrfull);
 			}
 		}
 		
@@ -131,10 +131,10 @@ class Contacts extends Modules {
 		// Устанавливаем поле для полного описания новости
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $lang){
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', isset($vars['langs'][$lang['key']]['descr']) ? $vars['langs'][$lang['key']]['descr'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', isset($vars['langs'][$lang['key']]['descr']) ? stripslashes($vars['langs'][$lang['key']]['descr']) : '' );
 				$data['descr'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 				
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? $vars['langs'][$lang['key']]['descrfull'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? stripslashes($vars['langs'][$lang['key']]['descrfull']) : '' );
 				$data['descrfull'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}

@@ -64,14 +64,14 @@ class Tags extends Modules {
 		
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $item){
-				$vars['langs'][$item['key']]['name']  			= $request -> isPost() ? $_POST['field'][$item['key']]['name']  : '';
-				$vars['langs'][$item['key']]['descr']			= $request -> isPost() ? $_POST['field'][$item['key']]['descr'] : '';
+				$vars['langs'][$item['key']]['name']  			= $request -> isPost() ? stripslashes($_POST['field'][$item['key']]['name'])  : '';
+				$vars['langs'][$item['key']]['descr']			= $request -> isPost() ? stripslashes($_POST['field'][$item['key']]['descr']) : '';
 			}
 		}
 		
 		$vars['posi'] 		= $request -> isPost() ? $request -> post('posi')			: 	'';
 		$vars['alias'] 		= $request -> isPost() ? $request -> post('alias')			: 	'';
-		$vars['dateAdd']	= $_POST ? $request -> post('dateAdd')						:	date('Y-m-d H:i:s');
+		$vars['dateAdd']	= $request -> isPost() ? $request -> post('dateAdd')						:	date('Y-m-d H:i:s');
 		$vars['isHidden'] 	= $request -> isPost() ? $request -> post('isHidden')		:	'';
 		
 		
@@ -111,7 +111,7 @@ class Tags extends Modules {
 		
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $lang){
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', $_POST ? $_POST['field'][$lang['key']]['descr'] : '');
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', $_POST ? stripslashes($_POST['field'][$lang['key']]['descr']) : '');
 				$data['descr'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}
@@ -134,14 +134,14 @@ class Tags extends Modules {
 
 		if(!empty($result['langs'])){
 			foreach($result['langs'] as $item){
-				$vars['langs'][$item -> lang]['name']  			= $request -> isPost() ? $_POST['field'][$item -> lang]['name']  : $item -> title;
-				$vars['langs'][$item -> lang]['descr']			= $request -> isPost() ? $_POST['field'][$item -> lang]['descr'] : $item -> descr;
+				$vars['langs'][$item -> lang]['name']  			= $request -> isPost() ? $_POST['field'][$item -> lang]['name']  : stripslashes($item -> title);
+				$vars['langs'][$item -> lang]['descr']			= $request -> isPost() ? $_POST['field'][$item -> lang]['descr'] : stripslashes($item -> descr);
 			}
 		}
 		
 		$vars['posi'] 		= $request -> isPost() ? $request -> post('posi')			: 	$result['base'] -> posi;
 		$vars['alias'] 		= $request -> isPost() ? $request -> post('alias')			: 	$result['base'] -> alias;
-		$vars['dateAdd']	= $_POST ? $request -> post('dateAdd')						:	($result['base'] -> dateAdd ? $result['base'] -> dateAdd : date('Y-m-d H:i:s'));
+		$vars['dateAdd']	= $request -> isPost() ? $request -> post('dateAdd')		:	($result['base'] -> dateAdd ? $result['base'] -> dateAdd : date('Y-m-d H:i:s'));
 		$vars['isHidden'] 	= $request -> isPost() ? $request -> post('isHidden')		:	$result['base'] -> isHidden;
 		
 		

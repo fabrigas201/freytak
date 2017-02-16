@@ -190,7 +190,7 @@ class Menu extends Modules {
 		
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $lang){
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? $vars['langs'][$lang['key']]['descrfull'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? stripslashes($vars['langs'][$lang['key']]['descrfull']) : '' );
 				$data['descrfull'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}
@@ -220,13 +220,13 @@ class Menu extends Modules {
 		
 		if(isset($result['langs'])){
 			foreach($result['langs'] as $item){
-				$vars['langs'][$item -> lang]['name']  			= $_POST ? $_POST['field'][$item -> lang]['name']  		: $item -> title;
-				$vars['langs'][$item -> lang]['text'] 			= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: $item -> text;
-				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: $item -> metaD;
-				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: $item -> metaK;
-				//$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: $item -> alias;
-				//$vars['langs'][$item -> lang]['for_smi'] 		= $_POST ? $_POST['field'][$item -> lang]['for_smi'] 	: $item -> for_smi;
-				//$vars['langs'][$item -> lang]['description']	= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: $item -> description;
+				$vars['langs'][$item -> lang]['name']  			= $_POST ? $_POST['field'][$item -> lang]['name']  		: stripslashes($item -> title);
+				$vars['langs'][$item -> lang]['text'] 			= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: stripslashes($item -> text);
+				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: stripslashes($item -> metaD);
+				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: stripslashes($item -> metaK);
+				//$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: stripslashes($item -> alias);
+				//$vars['langs'][$item -> lang]['for_smi'] 		= $_POST ? $_POST['field'][$item -> lang]['for_smi'] 	: stripslashes($item -> for_smi);
+				//$vars['langs'][$item -> lang]['description']	= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: stripslashes($item -> description);
 			}
 		}
 		
@@ -390,7 +390,7 @@ class Menu extends Modules {
 		
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $lang){
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['text']) ? $vars['langs'][$lang['key']]['text'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['text']) ? stripslashes($vars['langs'][$lang['key']]['text']) : '' );
 				$data['descrfull'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}
@@ -424,10 +424,13 @@ class Menu extends Modules {
 			if(isset($_POST['field'][$lang]['name']) && !empty($_POST['field'][$lang]['name'])){
 				$sql_query_data['langs'][$lang]['title'] = trim(addslashes($_POST['field'][$lang]['name']));
 				
-				// Устаналиваем alias
-				$alias = getAlias($_POST['field'][$lang]['name'], $_POST['field'][$lang]['alias']);
-				$alias = checkAlias($alias, $request -> get('id'), $lang);
-				$sql_query_data['langs'][$lang]['alias'] = $alias;
+				if(isset($_POST['field'][$lang]['alias'])){
+					// Устаналиваем alias
+					$alias = getAlias($_POST['field'][$lang]['name'], $_POST['field'][$lang]['alias']);
+					$alias = checkAlias($alias, $request -> get('id'), $lang);
+					$sql_query_data['langs'][$lang]['alias'] = $alias;
+				}
+				
 				
 			}else{
 				$this -> errors[$lang]['noName']='Не указано наименование';

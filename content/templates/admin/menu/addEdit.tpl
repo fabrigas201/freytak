@@ -73,11 +73,11 @@
 			<td>Тип меню</td>
 			<td>
 				<select name="typeMenu" id="typeMenu" style="width:90%">
-					<option value="page">По умолчанию (страница)</option>
-					<option value="articles">Список</option>
-					<option value="news">Новости</option>
-					<option value="contact">Контакты</option>
-					<option value="vacancy">Вакансии</option>
+					<option {if $vars.typeMenu == 'page'} selected {/if} value="page">По умолчанию (страница)</option>
+					<option {if $vars.typeMenu == 'articles'} selected {/if} value="articles">Список</option>
+					<option {if $vars.typeMenu == 'news'} selected {/if} value="news">Новости</option>
+					<option {if $vars.typeMenu == 'contact'} selected {/if} value="contact">Контакты</option>
+					<option {if $vars.typeMenu == 'vacancy'} selected {/if} value="vacancy">Вакансии</option>
 				</select>
 			</td>
 		</tr>

@@ -81,11 +81,11 @@ class Slides extends Modules {
 		
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $item){
-				$vars['langs'][$item['key']]['name']  			= $_POST ? $_POST['field'][$item['key']]['name']  		: '';
-				$vars['langs'][$item['key']]['metaD'] 			= $_POST ? $_POST['field'][$item['key']]['metaD'] 		: '';
-				$vars['langs'][$item['key']]['metaK'] 			= $_POST ? $_POST['field'][$item['key']]['metaK'] 		: '';
-				$vars['langs'][$item['key']]['alias'] 			= $_POST ? $_POST['field'][$item['key']]['alias'] 		: '';
-				$vars['langs'][$item['key']]['descrfull'] 		= $_POST ? $_POST['field'][$item['key']]['descrfull'] 	: '';
+				$vars['langs'][$item['key']]['name']  			= $_POST ? stripslashes($_POST['field'][$item['key']]['name'])  		: '';
+				$vars['langs'][$item['key']]['metaD'] 			= $_POST ? stripslashes($_POST['field'][$item['key']]['metaD']) 		: '';
+				$vars['langs'][$item['key']]['metaK'] 			= $_POST ? stripslashes($_POST['field'][$item['key']]['metaK']) 		: '';
+				$vars['langs'][$item['key']]['alias'] 			= $_POST ? stripslashes($_POST['field'][$item['key']]['alias']) 		: '';
+				$vars['langs'][$item['key']]['descrfull'] 		= $_POST ? stripslashes($_POST['field'][$item['key']]['descrfull']) 	: '';
 			}
 		}
 		
@@ -166,10 +166,10 @@ class Slides extends Modules {
 		// Устанавливаем поле для полного описания новости
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $lang){
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', isset($vars['langs'][$lang['key']]['descr']) ? $vars['langs'][$lang['key']]['descr'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', isset($vars['langs'][$lang['key']]['descr']) ? stripslashes($vars['langs'][$lang['key']]['descr']) : '' );
 				$data['descr'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 				
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? $vars['langs'][$lang['key']]['descrfull'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? stripslashes($vars['langs'][$lang['key']]['descrfull']) : '' );
 				$data['descrfull'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}
@@ -197,12 +197,12 @@ class Slides extends Modules {
 		
 		if(isset($result['langs'])){
 			foreach($result['langs'] as $item){
-				$vars['langs'][$item -> lang]['name']  			= $_POST ? $_POST['field'][$item -> lang]['name']  		: $item -> title;
-				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: $item -> metaD;
-				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: $item -> metaK;
-				$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: $item -> alias;
-				$vars['langs'][$item -> lang]['descr'] 			= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: $item -> descr;
-				$vars['langs'][$item -> lang]['descrfull'] 		= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: $item -> descrfull;
+				$vars['langs'][$item -> lang]['name']  			= $_POST ? $_POST['field'][$item -> lang]['name']  		: stripslashes($item -> title);
+				$vars['langs'][$item -> lang]['metaD'] 			= $_POST ? $_POST['field'][$item -> lang]['metaD'] 		: stripslashes($item -> metaD);
+				$vars['langs'][$item -> lang]['metaK'] 			= $_POST ? $_POST['field'][$item -> lang]['metaK'] 		: stripslashes($item -> metaK);
+				$vars['langs'][$item -> lang]['alias'] 			= $_POST ? $_POST['field'][$item -> lang]['alias'] 		: stripslashes($item -> alias);
+				$vars['langs'][$item -> lang]['descr'] 			= $_POST ? $_POST['field'][$item -> lang]['descr'] 		: stripslashes($item -> descr);
+				$vars['langs'][$item -> lang]['descrfull'] 		= $_POST ? $_POST['field'][$item -> lang]['descrfull'] 	: stripslashes($item -> descrfull);
 			}
 		}
 		
@@ -350,10 +350,10 @@ class Slides extends Modules {
 		// Устанавливаем поле для полного описания новости
 		if(config('lang.langs')){
 			foreach(config('lang.langs') as $lang){
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', isset($vars['langs'][$lang['key']]['descr']) ? $vars['langs'][$lang['key']]['descr'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', isset($vars['langs'][$lang['key']]['descr']) ? stripslashes($vars['langs'][$lang['key']]['descr']) : '' );
 				$data['descr'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 				
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? $vars['langs'][$lang['key']]['descrfull'] : '' );
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', isset($vars['langs'][$lang['key']]['descrfull']) ? stripslashes($vars['langs'][$lang['key']]['descrfull']) : '' );
 				$data['descrfull'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}

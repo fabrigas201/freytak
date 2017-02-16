@@ -164,7 +164,7 @@ class BaseController extends Controller {
 		
 		
 		$vars = [
-			'mainTitle' 	=> __('bureau_attorneys') .' "'.__('freytak_and_sons').'"',
+			'mainTitle' 	=> stripslashes(__('bureau_attorneys')) .' "'.stripslashes(__('freytak_and_sons')).'"',
 			'topMenu'   	=> $topMenu,
 			'practics'  	=> $practics,
 			'subBuro'		=> $subBuro,

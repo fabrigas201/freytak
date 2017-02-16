@@ -83,9 +83,9 @@ class News extends BaseController{
 		}
 		
 		$vars = [
-			'title' => $pageMenu -> title,
-			'metaK' => $pageMenu -> metaK,
-			'metaD' => $pageMenu -> metaD,
+			'title' => stripslashes($pageMenu -> title),
+			'metaK' => stripslashes($pageMenu -> metaK),
+			'metaD' => stripslashes($pageMenu -> metaD),
 			'page' => $pageMenu,
 			'results' => $results,
 			'breadcrumbs' => $breadcrumbs,
@@ -162,15 +162,15 @@ class News extends BaseController{
 					$aliasMenu = get_url(config('lang.weblang'),$item -> typeMenu.'/'.$item -> alias);
 				}
 				
-				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.$item -> title.'</a>';
+				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.stripslashes($item -> title).'</a>';
 			}
 			
 		}
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item',$result -> alias).'">'.$result -> title.'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item',$result -> alias).'">'.stripslashes($result -> title).'</a>';
 
 	   
 		$vars = [
-			'title' => $result -> title,
+			'title' => stripslashes($result -> title),
 			'page' => $result,
 			'breadcrumbs' => $breadcrumbs,
 			'date' => $date,

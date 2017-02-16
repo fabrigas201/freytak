@@ -73,15 +73,15 @@ class Vacancy extends BaseController{
 					$aliasMenu = get_url(config('lang.weblang'), $item -> typeMenu.'/'.$item -> alias);
 				}
 				
-				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.$item -> title.'</a>';
+				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.stripslashes($item -> title).'</a>';
 			}
 			
 		}
 		
 		$vars = [
-			'title' => $pageMenu -> title,
-			'metaK' => $pageMenu -> metaK,
-			'metaD' => $pageMenu -> metaD,
+			'title' => stripslashes($pageMenu -> title),
+			'metaK' => stripslashes($pageMenu -> metaK),
+			'metaD' => stripslashes($pageMenu -> metaD),
 			'page' => $pageMenu,
 			'results' => $results,
 			'breadcrumbs' => $breadcrumbs,

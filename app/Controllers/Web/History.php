@@ -55,7 +55,7 @@ class History extends BaseController{
 		
 
 		$vars = [
-			'title' => __('GALLERY_OF_RUSSIAN_LAW_OF_FAME'),
+			'title' => stripslashes(__('GALLERY_OF_RUSSIAN_LAW_OF_FAME')),
 			'metaK' => '',
 			'metaD' => '',
 			'results' => $results,
@@ -107,16 +107,16 @@ class History extends BaseController{
 		$breadcrumbs = [];
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'), 'history').'">'.__('GALLERY_OF_RUSSIAN_LAW_OF_FAME').'</a>';
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'history',$result -> alias).'">'.$result -> title.'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'history',$result -> alias).'">'.stripslashes($result -> title).'</a>';
 
 	   
 		$vars = [
-			'title' 		=> $result -> title,
+			'title' 		=> stripslashes($result -> title),
 			'result' 		=> $result,
 			'date' 			=> $date,
 			'segment' 		=> $request -> segment(1),
-			'metaK' 		=> $result -> metaK,
-			'metaD' 		=> $result -> metaD,
+			'metaK' 		=> stripslashes($result -> metaK),
+			'metaD' 		=> stripslashes($result -> metaD),
 			'breadcrumbs' 	=> $breadcrumbs,
 			
 			
