@@ -24,7 +24,15 @@ class NewsModel{
 			$sql .= ' AND  `an`.`inCalendar`="'.$data['inCalendar'].'" ';
 		}
 		
-		$sql .= ' ORDER BY  `an`.`id` DESC ';
+		if(isset($data['sort'])){
+			if($data['sort'] == 'date_events_desc'){
+				$sql .= ' ORDER BY  `an`.`eventDate` DESC ';
+			}
+		}else{
+			$sql .= ' ORDER BY  `an`.`id` DESC ';
+		}
+		
+		
 		
 
 		if (isset($data['start']) || isset($data['limit'])) {

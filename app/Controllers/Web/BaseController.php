@@ -98,6 +98,7 @@ class BaseController extends Controller {
 		// Выводим События для календаря
 		$sqlParams = [];
 		$sqlParams['limit'] = 5;
+		$sqlParams['sort'] = 'date_events_desc';
 		$sqlParams['inCalendar'] = '1';
 		
 		// События для календаря
