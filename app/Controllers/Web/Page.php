@@ -14,6 +14,8 @@ use Cms\Exception\NotFoundException;
 
 class Page extends BaseController{
 
+	public $image_table;
+
 	public function read(){
 
 		$request = new Request();
@@ -32,7 +34,10 @@ class Page extends BaseController{
 		
 		
 		$pageMenu = Pages::getPage($id);
-		$pages = Pages::getPageWeb($sqlParams);
+		
+		$page = new Pages();
+		$page -> image_table = 'a_shop_images';
+		$pages = $page -> getPageWeb($sqlParams);
 		
 		if(empty($pageMenu)){
 			return new NotFoundException;
@@ -93,6 +98,7 @@ class Page extends BaseController{
 				$vars['descr'] = '';
 			}
 		}
+
 
 		return $this -> view -> show('public/other/text', $vars);
 	}

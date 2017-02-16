@@ -87,9 +87,32 @@ class ArticlesModel{
 
 		$query = DB::query($sql);
 		
-		if($query -> numRows > 0){
-			return $query -> row;
+		
+		if($query -> numRows == 1){
+			$result = $query -> row;
+
+			if(!isset($result -> alias)){
+				$result -> alias = $result -> id;
+			}
+			
+			if(isset($this->image_table)){
+				$images = new ImagesModel();
+				$images -> image_table = 'a_shop_images';
+				$images -> mod = 'pages';
+				
+				//$l->cover=$this->getCover($l->id);
+				$result -> images = $images -> getImages($result -> id);
+				if(isset($result -> images['cover'])){
+					$result -> cover = $result -> images['cover'];
+					//не удалять тут т.к. пропадет в админке в карточке
+					//unset($l->images['cover']);
+				}
+			}elseif(isset($result -> images)){
+				$result -> images = unserialize($result -> images);
+			}
+			return $result;
 		}
+		
 
 		return null;
 	}

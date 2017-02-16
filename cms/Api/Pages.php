@@ -222,13 +222,13 @@ class Pages{
 	
 	############### Для web #############
 	
-	public static function getPageWeb($data = []){
+	public function getPageWeb($data = []){
 		
 		$id = preg_replace('/[^0-9a-z_-]+/i','',trim($data['menu_id']));
 		if(!$data['menu_id']) return false;
 
 		
-		$sql = 'SELECT `amd`.`menu_id`,`amd`.`alias`, `an`.`id`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" AND `an`.`isHidden`="0"';
+		$sql = 'SELECT `amd`.`menu_id`,`amd`.`alias`, `an`.`id`, `an`.`mod`,  `an`.`isHidden`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" AND `an`.`isHidden`="0"';
 		
 		if(is_numeric($data['menu_id'])){
 			$sql .= 'AND `amd`.`menu_id`='.$data['menu_id'].' ';
@@ -237,8 +237,29 @@ class Pages{
 		}
 		$query = DB::query($sql);
 		
-		if($query -> numRows > 0){
-			return $query -> row;
+		if($query -> numRows == 1){
+			$result = $query -> row;
+
+			if(!isset($result -> alias)){
+				$result -> alias = $result -> id;
+			}
+			
+			if(isset($this->image_table)){
+				$images = new ImagesModel();
+				$images -> image_table = 'a_shop_images';
+				$images -> mod = 'pages';
+				
+				//$l->cover=$this->getCover($l->id);
+				$result -> images = $images -> getImages($result -> id);
+				if(isset($result -> images['cover'])){
+					$result -> cover = $result -> images['cover'];
+					//не удалять тут т.к. пропадет в админке в карточке
+					//unset($l->images['cover']);
+				}
+			}elseif(isset($result -> images)){
+				$result -> images = unserialize($result -> images);
+			}
+			return $result;
 		}
 
 		return null;

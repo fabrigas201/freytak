@@ -38,7 +38,6 @@ class News extends Modules {
 		$allNews 		= $shop -> getList($sqlParam);
 		$total 			= $shop -> getCountRec($sqlParam);
 
-		
 		$pagination = new Pagination();
 		$pagination -> limit = $limit;
 		$pagination -> page = $page;

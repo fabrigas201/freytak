@@ -13,7 +13,7 @@ use Cms\Exception\NotFoundException;
 
 class Roster extends BaseController{
     
-	
+	public $image_table;
 	
 	public function index(){
 		$request = new Request();
@@ -53,10 +53,9 @@ class Roster extends BaseController{
 		
 		
 		$articlesModel = new ArticlesModel();
-		
+		$articlesModel -> image_table = 'a_shop_images';
 		$resultsTotal = $articlesModel -> getArticlesCount($sqlParams);
 		$results = $articlesModel -> getArticles($sqlParams);
-		
 		
 		$pageMenu = Pages::getPage($id);
 		
@@ -152,7 +151,7 @@ class Roster extends BaseController{
 		}
 	   
 		$articlesModel = new ArticlesModel();
-		
+		$articlesModel -> image_table = 'a_shop_images';
 		$result = $articlesModel -> getArticle($sqlParams);
 	   
 		if(empty($result)){

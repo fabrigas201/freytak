@@ -3,12 +3,11 @@
 {if $pagesList}
 	{$pagesList}<br>
 {/if}
-
 <form action="" method="post">
 <table class="contTbl listingTbl">
 <tr>
-	<th class="{if $smarty.get.orderby==name}{$smarty.get.ascdesc}{/if}"><a href="{$path}?mod={$smarty.get.mod}&orderby=name&ascdesc={if $smarty.get.ascdesc=='asc'}desc{else}asc{/if}">Название</a></th>
-	<th class="{if $smarty.get.orderby==dateAdd}{$smarty.get.ascdesc}{/if}"><a href="{$path}?mod={$smarty.get.mod}&orderby=dateAdd&ascdesc={if $smarty.get.ascdesc=='asc'}desc{else}asc{/if}">Дата</a></th>
+	<th class="{if $smarty.get.orderby==name}{$smarty.get.ascdesc}{/if}"><a href="{$path}?mod={if isset($smarty.get.mod)}{$smarty.get.mod}{else}{'news'}{/if}&orderby=name&ascdesc={if $smarty.get.ascdesc=='asc'}desc{else}asc{/if}">Название</a></th>
+	<th class="{if $smarty.get.orderby==dateAdd}{$smarty.get.ascdesc}{/if}"><a href="{$path}?mod={if isset($smarty.get.mod)}{$smarty.get.mod}{else}{'news'}{/if}&orderby=dateAdd&ascdesc={if $smarty.get.ascdesc=='asc'}desc{else}asc{/if}">Дата</a></th>
 	<th width="55"></th>
 </tr>
 
@@ -17,8 +16,8 @@
 	<td><a href="?mod={$smarty.get.mod}&action=edit&id={$v->id}">{$v->title}</a></td>
 	<td>{$v->dateAdd|date_format:"%d.%m.%Y"}</td>
 	<td>
-		<a href="?mod={$smarty.get.mod}&action=del&id={$v->id}" class="del"></a>
-		<a href="?mod={$smarty.get.mod}&action=edit&id={$v->id}" class="edit"></a>
+		<a href="?mod={if isset($smarty.get.mod)}{$smarty.get.mod}{else}{'news'}{/if}&action=del&id={$v->id}" class="del"></a>
+		<a href="?mod={if isset($smarty.get.mod)}{$smarty.get.mod}{else}{'news'}{/if}&action=edit&id={$v->id}" class="edit"></a>
 	</td>
 </tr>
 {foreachelse}
@@ -35,5 +34,5 @@
 {if $pagesList}
 	<br>{$pagesList}
 {/if}
-<div class="addItem"><a href="?mod={$smarty.get.mod}&action=add">Добавить</a></div>
+<div class="addItem"><a href="?mod={if isset($smarty.get.mod)}{$smarty.get.mod}{else}{'news'}{/if}&action=add">Добавить</a></div>
 {/block}

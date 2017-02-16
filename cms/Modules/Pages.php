@@ -181,7 +181,7 @@ class Pages extends Modules {
 				$this -> wysiwyg -> setField('field['.$lang['key'].'][descr]', $_POST ? stripslashes($_POST['field'][$lang['key']]['descr']) : '');
 				$data['descr'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 				
-				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', stripslashes($_POST ? $_POST['field'][$lang['key']]['descrfull']) : '');
+				$this -> wysiwyg -> setField('field['.$lang['key'].'][descrfull]', $_POST ? stripslashes($_POST['field'][$lang['key']]['descrfull']) : '');
 				$data['descrfull'][$lang['key']] = $this -> wysiwyg -> CreateHtml();
 			}
 		}
