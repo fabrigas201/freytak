@@ -29,7 +29,7 @@ class NewsModel{
 				$sql .= ' ORDER BY  `an`.`eventDate` DESC ';
 			}
 		}else{
-			$sql .= ' ORDER BY  `an`.`id` DESC ';
+			$sql .= ' ORDER BY  `an`.`dateAdd` DESC ';
 		}
 		
 
@@ -188,7 +188,7 @@ class NewsModel{
 			return;
 		}
 		
-		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` < "'.$dateAdd.'" ORDER BY `an`.`id` DESC LIMIT 1';
+		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` < "'.$dateAdd.'" ORDER BY  `an`.`dateAdd` DESC LIMIT 1';
 		
 		
 		return DB::query($sql) -> row;
@@ -206,7 +206,7 @@ class NewsModel{
 			return;
 		}
 		
-		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`posi`, `an`.`categories`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` > "'.$dateAdd.'" ORDER BY `an`.`id` ASC LIMIT 1';
+		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`posi`, `an`.`categories`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  AND `an`.`categories`="'.$categories.'" AND `an`.`dateAdd` > "'.$dateAdd.'" ORDER BY  `an`.`dateAdd` ASC LIMIT 1';
 		
 		return DB::query($sql) -> row;
 	}
