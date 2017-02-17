@@ -51,13 +51,34 @@ class News extends BaseController{
 			return new NotFoundException;
 		}
 		
+		
+		$pages = new Pages();
+		
+		if(empty($pageMenu)){
+			return new NotFoundException;
+		}
+		
+		$aliases  = $pages -> getAliasPages($pageMenu -> menu_id);
+		
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'news', $alias -> alias)
+				];
+			}
+		}
+		
+		
+		
 		$pagination = new Pagination();
 		$pagination -> limit = $limit;
 		$pagination -> page = $page;
 		$pagination -> url = get_url(config('lang.weblang'), 'news' , $pageMenu -> alias.'?page={page}');
 		$pagination -> total = $resultsTotal;
-		
-		
 		
 		$tree = new Trees(PREFIX.'_menu');
 		$tree -> getParents($pageMenu -> id);
@@ -72,26 +93,26 @@ class News extends BaseController{
 				if(empty($item -> typeMenu) && $item -> isIndex !='1'){
 					$aliasMenu = 'javascript:void(0)';
 				}elseif(empty($item -> typeMenu) && $item -> isIndex =='1'){
-					$aliasMenu = get_url(config('lang.weblang'));
+					$aliasMenu = get_url($item -> lang);
 				}else{
-					$aliasMenu = get_url(config('lang.weblang'), $item -> typeMenu.'/'.$item -> alias);
+					$aliasMenu = get_url($item -> lang, $item -> typeMenu.'/'.$item -> alias);
 				}
-				
 				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.$item -> title.'</a>';
 			}
 			
 		}
 		
 		$vars = [
-			'title' => stripslashes($pageMenu -> title),
-			'metaK' => stripslashes($pageMenu -> metaK),
-			'metaD' => stripslashes($pageMenu -> metaD),
-			'page' => $pageMenu,
-			'results' => $results,
-			'breadcrumbs' => $breadcrumbs,
-			'segment' => $request -> segment(1),
-			'mobth' => true,
+			'title' 		=> stripslashes($pageMenu -> title),
+			'metaK'			=> stripslashes($pageMenu -> metaK),
+			'metaD' 		=> stripslashes($pageMenu -> metaD),
+			'page' 			=> $pageMenu,
+			'results' 		=> $results,
+			'breadcrumbs' 	=> $breadcrumbs,
+			'segment' 		=> $request -> segment(1),
+			'mobth' 		=> true,
 			'pagesList'		=> $pagination -> createLinks(),
+			'langs'			=> $langs
 
 		];
 		
@@ -129,8 +150,7 @@ class News extends BaseController{
 		$newsModel	-> image_table = 'a_shop_images';
 		$result 	= $newsModel -> getNewsItem($sqlParams);
 	   
-		$aliases  =$newsModel -> getAliasNews($result -> id);
-	   
+		$aliases  = $newsModel -> getAliasNews($result -> id);
 		$langs = [];
 		
 		if(count($aliases) > 0){
@@ -171,16 +191,16 @@ class News extends BaseController{
 				if(empty($item -> typeMenu) && $item -> isIndex !='1'){
 					$aliasMenu = 'javascript:void(0)';
 				}elseif(empty($item -> typeMenu) && $item -> isIndex =='1'){
-					$aliasMenu = get_url(config('lang.weblang'));
+					$aliasMenu = get_url($item -> lang);
 				}else{
-					$aliasMenu = get_url(config('lang.weblang'),$item -> typeMenu.'/'.$item -> alias);
+					$aliasMenu = get_url($item -> lang,$item -> typeMenu.'/'.$item -> alias);
 				}
 				
 				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.stripslashes($item -> title).'</a>';
 			}
 			
 		}
-		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item',$result -> alias).'">'.stripslashes($result -> title).'</a>';
+		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url($item -> lang,'item',$result -> alias).'">'.stripslashes($result -> title).'</a>';
 
 	   
 		$vars = [

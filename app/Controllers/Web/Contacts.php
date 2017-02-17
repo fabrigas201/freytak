@@ -5,6 +5,7 @@ use Swift_Mailer;
 use Swift_MailTransport;
 use Cms\Controller;
 use Cms\Request;
+use Cms\Api\Pages;
 use Cms\Api\ContactsModel;
 
 use Cms\Exception\NotFoundException;
@@ -429,6 +430,29 @@ class Contacts extends BaseController{
 		$contacts  = new ContactsModel();
 		$result = $contacts -> getContactWeb($sqlParams);
 
+		$pageMenu = Pages::getPage($id);
+		
+		$pages = new Pages();
+		
+		if(empty($result)){
+			return new NotFoundException;
+		}
+		
+		$aliases  = $pages -> getAliasPages($pageMenu -> id);
+		
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'contact', $alias -> alias)
+				];
+			}
+		}
+		
+		
 		// Хлебные крошки
 		$breadcrumbs = [];
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
@@ -441,6 +465,7 @@ class Contacts extends BaseController{
 			'result'	 	=> $result,
 			'breadcrumbs' 	=> $breadcrumbs,
 			'segment' 		=> $request -> segment(1),
+			'langs'			=> $langs
 			
 		];
 		

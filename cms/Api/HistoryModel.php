@@ -133,4 +133,12 @@ class HistoryModel{
 
 		return null;
 	}
+	
+	
+	public function getAliasHistory($id){	
+		$sql = 'SELECT `news_id`, `lang`, `id`, `alias` FROM `a_news_description` WHERE `news_id`='.$id;
+		return DB::query($sql) -> rows;
+	}
+	
+	
 }

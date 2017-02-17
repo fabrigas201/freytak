@@ -40,7 +40,6 @@ class Roster extends BaseController{
 		}
 		
 		
-		
 		$sqlParams = [
 			'menu_id' 	=> $id,
 			'start' 	=> ($page-1)*$limit,
@@ -59,8 +58,24 @@ class Roster extends BaseController{
 		
 		$pageMenu = Pages::getPage($id);
 		
+		$pages = new Pages();
+		
 		if(empty($pageMenu)){
 			return new NotFoundException;
+		}
+		
+		$aliases  = $pages -> getAliasPages($pageMenu -> menu_id);
+		
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'articles', $alias -> alias)
+				];
+			}
 		}
 		
 		$tree = new Trees();
@@ -83,9 +98,9 @@ class Roster extends BaseController{
 				if(empty($item -> typeMenu) && $item -> isIndex !='1'){
 					$aliasMenu = 'javascript:void(0)';
 				}elseif(empty($item -> typeMenu) && $item -> isIndex =='1'){
-					$aliasMenu = get_url(config('lang.weblang'));
+					$aliasMenu = get_url($item -> lang);
 				}else{
-					$aliasMenu = get_url(config('lang.weblang'),$item -> typeMenu,$item -> alias);
+					$aliasMenu = get_url($item -> lang,$item -> typeMenu,$item -> alias);
 				}
 				
 				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.$item -> title.'</a>';
@@ -103,6 +118,7 @@ class Roster extends BaseController{
 			'pagesList'		=> $pagination -> createLinks(),
 			//'subnews'		=> $subnews,
 			'date'			=> $date,
+			'langs'			=> $langs
 			
 		];
 		
@@ -127,7 +143,7 @@ class Roster extends BaseController{
 	
 	
 	public function read(){
-	   $request = new Request();
+		$request = new Request();
 		$id = $request -> segment(3);
 		
 		if($request -> get('date')){
@@ -154,8 +170,12 @@ class Roster extends BaseController{
 		$articlesModel -> image_table = 'a_shop_images';
 		$result = $articlesModel -> getArticle($sqlParams);
 	   
+		if(empty($result)){
+			return new NotFoundException;
+		}
 	   
-		$aliases  =$articlesModel -> getAliasArticles($result -> id);
+	   
+		$aliases  = $articlesModel -> getAliasArticles($result -> id);
 	   
 		$langs = [];
 		
@@ -170,9 +190,7 @@ class Roster extends BaseController{
 		}
 	   
 	   
-		if(empty($result)){
-			return new NotFoundException;
-		}
+		
 		
 		
 		$tree = new Trees(PREFIX.'_menu');
@@ -189,9 +207,9 @@ class Roster extends BaseController{
 				if(empty($item -> typeMenu) && $item -> isIndex !='1'){
 					$aliasMenu = 'javascript:void(0)';
 				}elseif(empty($item -> typeMenu) && $item -> isIndex =='1'){
-					$aliasMenu = get_url(config('lang.weblang'));
+					$aliasMenu = get_url($item -> lang);
 				}else{
-					$aliasMenu = get_url(config('lang.weblang'),$item -> typeMenu.'/'.$item -> alias);
+					$aliasMenu = get_url($item -> lang,$item -> typeMenu.'/'.$item -> alias);
 				}
 				
 				$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.stripslashes($item -> title).'</a>';
@@ -201,14 +219,14 @@ class Roster extends BaseController{
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'),'item/'.$result -> alias).'">'.stripslashes($result -> title).'</a>';
 
 		$vars = [
-			'title' => stripslashes($result -> title),
-			'result' => $result,
-			'breadcrumbs' => $breadcrumbs,
-			'date' => $date,
-			'segment' => $request -> segment(1),
-			'metaK' => stripslashes($result -> metaK),
-			'metaD' => stripslashes($result -> metaD),
-			'langs' => $langs
+			'title' 		=> stripslashes($result -> title),
+			'result' 		=> $result,
+			'breadcrumbs' 	=> $breadcrumbs,
+			'date' 			=> $date,
+			'segment' 		=> $request -> segment(1),
+			'metaK' 		=> stripslashes($result -> metaK),
+			'metaD' 		=> stripslashes($result -> metaD),
+			'langs' 		=> $langs
 		];
 		
 		if(!empty($result -> cover)){

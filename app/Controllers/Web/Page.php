@@ -34,14 +34,28 @@ class Page extends BaseController{
 		
 		
 		$pageMenu = Pages::getPage($id);
-		
 		$page = new Pages();
 		$page -> image_table = 'a_shop_images';
 		$pages = $page -> getPageWeb($sqlParams);
 		
-		if(empty($pageMenu)){
+		if(empty($pages) && empty($pageMenu)){
 			return new NotFoundException;
 		}
+		
+		$aliases  = $page -> getAliasPages($pageMenu -> menu_id);
+		
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'page', $alias -> alias)
+				];
+			}
+		}
+		
 		
 		// Хлебные крошки
 		$breadcrumbs = [];
@@ -60,9 +74,9 @@ class Page extends BaseController{
 						if(empty($item -> typeMenu) && $item -> isIndex !='1'){
 							$aliasMenu = 'javascript:void(0)';
 						}elseif(empty($item -> typeMenu) && $item -> isIndex =='1'){
-							$aliasMenu = get_url(config('lang.weblang'));
+							$aliasMenu = get_url($item -> lang);
 						}else{
-							$aliasMenu = get_url(config('lang.weblang'),$item -> typeMenu,$item -> alias);
+							$aliasMenu = get_url($item -> lang,$item -> typeMenu,$item -> alias);
 						}
 						
 						$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.$aliasMenu .'">'.$item -> title.'</a>';
@@ -73,7 +87,6 @@ class Page extends BaseController{
 			
 		}
 		
-
 		$vars = [
 			'title' => isset($pageMenu -> title) ? stripslashes($pageMenu -> title) : '',
 			'metaK' => isset($pageMenu -> metaK) ? stripslashes($pageMenu -> metaK) : '',
@@ -81,6 +94,7 @@ class Page extends BaseController{
 			'result' => $pages,
 			'breadcrumbs' => $breadcrumbs,
 			'segment' => $request -> segment(1),
+			'langs' => $langs
 
 		];
 		

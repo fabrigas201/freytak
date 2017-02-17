@@ -47,6 +47,26 @@ class Vacancy extends BaseController{
 		$resultsTotal = $vacancyModel -> getVacancyCount($sqlParams);
 		$results = $vacancyModel -> getVacancy($sqlParams);
 		
+		$pages = new Pages();
+		
+		if(empty($pageMenu)){
+			return new NotFoundException;
+		}
+		
+		$aliases  = $pages -> getAliasPages($pageMenu -> menu_id);
+		
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'vacancy', $alias -> alias)
+				];
+			}
+		}
+		
 		
 		$pagination = new Pagination();
 		$pagination -> limit = $limit;
@@ -79,15 +99,16 @@ class Vacancy extends BaseController{
 		}
 		
 		$vars = [
-			'title' => stripslashes($pageMenu -> title),
-			'metaK' => stripslashes($pageMenu -> metaK),
-			'metaD' => stripslashes($pageMenu -> metaD),
-			'page' => $pageMenu,
-			'results' => $results,
-			'breadcrumbs' => $breadcrumbs,
-			'segment' => $request -> segment(1),
-			'mobth' => true,
+			'title' 		=> stripslashes($pageMenu -> title),
+			'metaK' 		=> stripslashes($pageMenu -> metaK),
+			'metaD' 		=> stripslashes($pageMenu -> metaD),
+			'page' 			=> $pageMenu,
+			'results' 		=> $results,
+			'breadcrumbs' 	=> $breadcrumbs,
+			'segment' 		=> $request -> segment(1),
+			'mobth' 		=> true,
 			'pagesList'		=> $pagination -> createLinks(),
+			'langs'			=> $langs
 
 		];
 		

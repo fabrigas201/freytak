@@ -61,13 +61,28 @@ class Search extends BaseController{
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url('search?q='.htmlentities($query)).'">'.__('search_result').'::'.htmlentities($query).'</a>';
 	   
+	   
+		$langs = [];
+
+		if(count(config('lang.langs')) > 0){
+			foreach(config('lang.langs') as $alias){
+				$langs[] = [
+					'alias' => 'history',
+					'lang' => $alias['key'],
+					'href' => get_url($alias['key'], 'search?q='.htmlentities($query))
+				];
+			}
+		}
+	   
+	   
 		$vars = [
 			'title' 		=> __('search_result').'::'.htmlentities($query),
 			'result' 		=> $result,
 			'breadcrumbs' 	=> $breadcrumbs,
 			'pagesList' 	=> $pagination -> createLinks(),
 			'date' 			=> $date,
-			'segment' 		=> $request -> segment(1)
+			'segment' 		=> $request -> segment(1),
+			'langs'			=> $langs
 			
 		];
 		

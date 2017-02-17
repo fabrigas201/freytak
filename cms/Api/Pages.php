@@ -173,8 +173,6 @@ class Pages{
 		return null;
 	}
 	
-	
-	
 	// Вытаскиваем все новости
 	public static function getTagsCount($sqlParam = []){
 		
@@ -217,7 +215,6 @@ class Pages{
 		}
 		return null;
 	}
-	
 	
 	
 	############### Для web #############
@@ -263,6 +260,13 @@ class Pages{
 		}
 
 		return null;
+	}
+	
+	
+	
+	public function getAliasPages($id){	
+		$sql = 'SELECT `menu_id`, `lang`, `id`, `alias` FROM `a_menu_description` WHERE `menu_id`='.$id;
+		return DB::query($sql) -> rows;
 	}
 	
 	

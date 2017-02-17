@@ -125,5 +125,4 @@ class ContactsModel{
 	
 		return null;
 	}
-	
 }

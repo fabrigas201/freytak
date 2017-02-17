@@ -30,9 +30,6 @@ class History extends BaseController{
 			'start' 	=> ($page-1)*$limit,
 			'limit' 	=> $limit,
 			'date' 		=> $date,
-			'orderby' => [
-				'posi' => 'ASC'
-			],
 		];
 		
 		
@@ -53,6 +50,19 @@ class History extends BaseController{
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang')).'">'.__('home').'</a>';
 		$breadcrumbs[] = '<a class="breadcrumbs__link" href="'.get_url(config('lang.weblang'), 'history').'">'.__('GALLERY_OF_RUSSIAN_LAW_OF_FAME').'</a>';
 		
+		
+		$langs = [];
+		
+		if(count(config('lang.langs')) > 0){
+			foreach(config('lang.langs') as $alias){
+				$langs[] = [
+					'alias' => 'history',
+					'lang' => $alias['key'],
+					'href' => get_url($alias['key'], 'history')
+				];
+			}
+		}
+		
 
 		$vars = [
 			'title' => stripslashes(__('GALLERY_OF_RUSSIAN_LAW_OF_FAME')),
@@ -62,6 +72,7 @@ class History extends BaseController{
 			'breadcrumbs' => $breadcrumbs,
 			'segment' => $request -> segment(1),
 			'pagesList'		=> $pagination -> createLinks(),
+			'langs' => $langs
 
 		];
 		
@@ -99,6 +110,21 @@ class History extends BaseController{
 		$historyModel -> image_table = 'a_shop_images';
 		$result = $historyModel -> getHistoryItem($sqlParams);
 		
+		
+		$aliases  = $historyModel -> getAliasHistory($result -> id);
+	   
+		$langs = [];
+		
+		if(count($aliases) > 0){
+			foreach($aliases as $alias){
+				$langs[] = [
+					'alias' => $alias -> alias,
+					'lang' => $alias -> lang,
+					'href' => get_url($alias -> lang, 'history', $alias -> alias)
+				];
+			}
+		}
+		
 		if(empty($result)){
 			return new NotFoundException;
 		}
@@ -118,6 +144,7 @@ class History extends BaseController{
 			'metaK' 		=> stripslashes($result -> metaK),
 			'metaD' 		=> stripslashes($result -> metaD),
 			'breadcrumbs' 	=> $breadcrumbs,
+			'langs'			=> $langs
 			
 			
 			
