@@ -101,12 +101,28 @@ class Home extends BaseController {
 			'menu_id' => 438,
 		]);
 		
+		
+		$langs = [];
+
+		if(count(config('lang.langs')) > 0){
+			foreach(config('lang.langs') as $alias){
+				$langs[] = [
+					'alias' => 'history',
+					'lang' => $alias['key'],
+					'href' => get_url($alias['key'], 'index_buro')
+				];
+			}
+		}
+		
+		
+		
 		$vars = [
 			'title'     => __('bureau_attorneys'),
 			'news_1'    => $news_1,
 			'news_2'    => $news_2,
 			'news_3'    => $news_3,
 			'treatment' => !empty($treatment) ? $treatment : '',
+			'langs'		=> $langs
 		];
 
 		return $this -> view -> show('public/inIndex/buro', $vars);
