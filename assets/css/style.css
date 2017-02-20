@@ -2368,9 +2368,7 @@ input.search__field {
 }
 
 .linkTriangle_line {
-
-
-
+	height:50px;
 }
 
 .linkTriangle_line .linkTriangle__text {
@@ -2768,28 +2766,17 @@ input.search__field {
 
 
 .signature {
-
+	background: url(../images/signature.png) 100% -15px no-repeat;
 	position: relative;
-
 	height: 50px;
+	float: right;
+    width: 65%;
 
 }
 
 .signature::before {
 
-	content: '';
-
-	position: absolute;
-
-	bottom: 0;
-
-	right: 79px;
-
-	width: 396px;
-
-	height: 170px;
-
-	background: url(../images/signature.png) 0 0 no-repeat;
+	
 
 }
 
@@ -2938,6 +2925,7 @@ input.search__field {
 	width: 72%;
 
 	line-height: 24px;
+	overflow:hidden;
 
 }
 
@@ -2955,7 +2943,7 @@ input.search__field {
 
 .treatment .signature {
 	margin-right: 18px;
-	height:100px;
+	height:175px;
 }
 
 
@@ -3579,7 +3567,9 @@ input.search__field {
 	cursor: pointer;
 
 }
-
+.zabuto_calendar .calendar__notificate > .day{
+	cursor:pointer;
+}
 .calendar__notificate {
 
 	position: relative;
@@ -4802,11 +4792,33 @@ span.post__content {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 166px
+	width: 166px;
 	height: 1px;
 	background: #e3e3e3;
 }
 
+ul.socials_button{
+    overflow: hidden;
+}
+ul.socials_button li{
+    float: left;
+    height: 35px;
+    margin-right: 10px;
+    width: 35px;
+}
+ul.socials_button li a{
+	background: #c6c5c4 url("../images/soc_footer.png") no-repeat;
+	padding:35px 35px 0 0;
+	border-radius:35px;
+	display: block;
+}
+ul.socials_button li a.fb{background-position:0 0;}
+ul.socials_button li a.vk{background-position:-35px 0;}
+ul.socials_button li a.tv{background-position:-70px 0;}
+ul.socials_button li a.pt{background-position:-105px 0;}
+ul.socials_button li a.ml{background-position:-140px 0;}
+ul.socials_button li a.yt{background-position:-175px 0;}
+ul.socials_button li a:hover{background-color:#25211c;}
 
 
 .share {
@@ -5482,4 +5494,52 @@ span.post__content {
 }
 .gallery .owl-next:hover::before {
 	border-left-color: #DFDBD4;
+}
+
+#confirm_senderform{
+    background-color: #ffffff;
+    border: 10px solid #777777;
+    padding: 10px;
+    width: 260px;
+	margin:0 auto;
+}
+#confirm_senderform p.head{
+	background: rgba(0, 0, 0, 0) url("../images/delimiter/4x6.png") repeat-x scroll 0 100%;
+    font-size: 14px;
+    height: 30px;
+    letter-spacing: 1.7px;
+    line-height: 1;
+    text-align: center;
+}
+#confirm_senderform p.capcha {
+	border: 1px solid;
+	overflow:hidden;
+	height:100px;
+}
+#confirm_senderform p.capcha img{
+	width:100%;
+}
+#confirm_senderform input[type='submit'],
+#confirm_senderform input[type='button']{
+    border: 0 none;
+    margin-left: 1px;
+	font-size: 12px;
+    padding: 5px 10px;	
+	font-weight:600;
+}
+#confirm_senderform input[type='button']{
+	color: #000;
+    height: auto;
+    line-height: normal;
+    opacity: 1;
+    position: relative;
+    width: auto;
+}
+
+#confirm_senderform input[type='submit']{
+	color:#FFFFFF;
+	background-color: #777777;
+}
+#confirm_senderform input[type='submit']:hover{
+	background-color: #25211c;
 }

@@ -243,6 +243,23 @@ $(function () {
 	});
 
 
+	$("#send_callback_form").click(function(){
+                var captchaUrl = "/kcaptcha/index.php?rand="+(Math.random()*(100000-1000)+1000);
+		$(".form__field input[type='text'],.form__field textarea").each(function(){
+			$("#hidden_"+this.name).val($(this).val());
+			$(this).val('');
+		});
+		$("p.capcha img").attr('src', captchaUrl);
+		$.magnificPopup.open({
+			items: {
+				src: '#confirm_senderform',
+				type: 'inline'
+			}
+		});
+	});
+	$("#confirm_senderform input[type='button']").click(function(){
+		$.magnificPopup.close();
+	});
 
 	// мобильное меню
 

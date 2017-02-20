@@ -420,6 +420,15 @@ $.fn.zabuto_calendar = function (options) {
                     } else {
                         $dowElement.addClass('calendar__notificate');
                         $dowElement.addClass(value.classname);
+						$dowElement.click(function(){
+							var day = this.id.replace(/.*_/g, "").split("-").reverse().join("/");
+							$(".container__col .post").removeClass('post_active');
+							$(".container__col .post__date").each(function(){
+								if($(this).text() == day){
+									$(this).parent().addClass('post_active');
+								}
+							});
+						});
                     }
 
                     if (typeof(value.badge) !== 'undefined' && value.badge !== false) {

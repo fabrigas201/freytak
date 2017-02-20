@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<label class="form__submit linkTriangle">
-							<input type="submit" value="{__('send_a_letter')}" class="form__submitInput">
+							<input type="button" value="{__('send_a_letter')}" class="form__submitInput">
 						</label>
 					</form>
 				</div>
@@ -132,23 +132,15 @@
 			</div>
 
 			<div class="container__col folder share hiddenMobile">
-				<div class="folder__title arno">{__('share_information')}</div>
-				<a href="https://www.facebook.com/sharer/sharer.php?u={$smarty.server.SERVER_NAME}{$smarty.server.REQUEST_URI}" class="share__link" target="_blank">
-					<img src="{get_url('assets/images/share/fb.png')}" alt="" class="share__img">
-				</a>
-				<a href="https://twitter.com/home?status={$smarty.server.SERVER_NAME}{$smarty.server.REQUEST_URI}" class="share__link" target="_blank">
-					<img src="{get_url('assets/images/share/tw.png')}" alt="" class="share__img">
-				</a>
-
-				<a href="https://www.linkedin.com/shareArticle?mini=true&url={$smarty.server.SERVER_NAME}{$smarty.server.REQUEST_URI}&title={$title}&summary={$smarty.server.REQUEST_URI}&source=Quoted" class="share__link" target="_blank">
-					<img src="{get_url('assets/images/share/in.png')}" alt="" class="share__img">
-				</a>
-				<a href="mailto:eg@freytakandsons.com" class="share__link">
-					<img src="{get_url('assets/images/share/email.png')}" alt="" class="share__img">
-				</a>
-				<a href="" class="share__link js-print">
-					<img src="{get_url('assets/images/share/print.png')}" alt="" class="share__img">
-				</a>
+				<div class="folder__title arno">Поделиться информацией</div>
+				<ul class="socials_button">
+					<li><a class="fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={$smarty.server.SERVER_NAME}{$smarty.server.REQUEST_URI}"></a></li>
+					<li><a class="tv" target="_blank" href="https://twitter.com/home?status={$smarty.server.SERVER_NAME}{$smarty.server.REQUEST_URI}"></a></li>
+					<li><a class="vk" target="_blank" href="#"></a></li>
+					<li><a class="ml" target="_blank" href="mailto:&body=ссылка на страницу: {get_current_url()}"></a></li>
+					<li><a class="pt" target="_blank" href=""></a></li>
+					<li><a class="yt" target="_blank" href=""></a></li>
+				</ul>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -163,6 +155,25 @@
 		<a href="" class="mobileNext__text arno">{__('back_to_top')}</a>
 	</div>
 </footer>
+	<div style="display:none;">
+		<div id="confirm_senderform">
+			<div class="capcha">
+				<form id="confirm_footer_form" method="POST" action="{get_url('contact/send')}">
+					<input id="hidden_remaller_check_email" name="remaller_check_email" type="hidden">
+					<input id="hidden_email" name="email" type="hidden" />
+					<input id="hidden_name" name="name" type="hidden" />
+					<input id="hidden_body" name="body" type="hidden" />
+					<p class="head">Подтверждение отправки</p>
+					<p class="capcha"><img src="" />}"></p>
+					<p><input type="text" name="verify"></p>
+					<p>
+						<input type="submit" value="Отправить письмо" name="send_form"/>
+						<input type="button" value="Отмена">
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<div id="calendar" class="popup mfp-hide calendar">
 		<div class="popup__wrap">
@@ -332,7 +343,7 @@
 
 <script type="text/javascript">
 $(function(){
-	$('.form_footer').on('submit', function(e){
+	$('.form_footer, #confirm_footer_form').on('submit', function(e){
 
         e.preventDefault();
         var errors = '';
@@ -340,7 +351,8 @@ $(function(){
         var data = {
             name:element.find('input[name="name"]').val(),
             email:element.find('input[name="email"]').val(),
-            body:element.find('textarea[name="body"]').val(),
+            body:element.find('input[name="body"]').val(),
+			verify:element.find('input[name="verify"]').val(),
 			remaller_check_email:element.find('input[name="remaller_check_email"]').val(),
         };
 
@@ -363,6 +375,7 @@ $(function(){
 
 				if (result.success) {
 				   alert(result.success);
+				   $.magnificPopup.close();
                 } else {
                     alert('error');
                     return(false);
