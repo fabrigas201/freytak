@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<label class="form__submit linkTriangle">
-							<input type="button" value="{__('send_a_letter')}" class="form__submitInput">
+							<input id="send_callback_form" type="button" value="{__('send_a_letter')}" class="form__submitInput">
 						</label>
 					</form>
 				</div>
@@ -158,13 +158,13 @@
 	<div style="display:none;">
 		<div id="confirm_senderform">
 			<div class="capcha">
-				<form id="confirm_footer_form" method="POST" action="{get_url('contact/send')}">
+				<form id="confirm_footer_form" method="POST" action="{get_url(config('lang.weblang'), 'contact/send')}">
 					<input id="hidden_remaller_check_email" name="remaller_check_email" type="hidden">
 					<input id="hidden_email" name="email" type="hidden" />
 					<input id="hidden_name" name="name" type="hidden" />
 					<input id="hidden_body" name="body" type="hidden" />
 					<p class="head">Подтверждение отправки</p>
-					<p class="capcha"><img src="" />}"></p>
+					<p class="capcha"><img src="{get_url('captcha')}" /></p>
 					<p><input type="text" name="verify"></p>
 					<p>
 						<input type="submit" value="Отправить письмо" name="send_form"/>

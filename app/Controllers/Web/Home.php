@@ -7,13 +7,11 @@ use Cms\Api\Articles;
 use Cms\Api\NewsModel;
 use Cms\Api\ArticlesModel;
 
-
-
 class Home extends BaseController {
 
 
    public function index(){
-
+	  // dd( $_SESSION['captcha_keystring']);
 		$request = new Request();
 
 		$page  = is_numeric($request -> get('page')) ? $request -> get('page') : 1;

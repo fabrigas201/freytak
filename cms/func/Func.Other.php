@@ -279,6 +279,21 @@ function get_url() {
 
 
 
+function get_current_url() {
+	$result = '';
+	if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=='on')) {
+		$result .= 'https://';
+	} else {
+		$result .= 'http://';
+	}
+	
+	$result .= $_SERVER['SERVER_NAME'];
+	$result .= $_SERVER['REQUEST_URI'];
+	return $result;
+}
+
+
+
 if(!function_exists('redirect')){
 	function redirect($url) {
 		header('Location: '.get_url($url)); exit();

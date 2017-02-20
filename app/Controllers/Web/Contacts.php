@@ -8,6 +8,8 @@ use Cms\Request;
 use Cms\Api\Pages;
 use Cms\Api\ContactsModel;
 
+use Cms\Libs\Captcha;
+
 use Cms\Exception\NotFoundException;
 
 class Contacts extends BaseController{
@@ -36,7 +38,6 @@ class Contacts extends BaseController{
 					fclose($fileOpen);
 				}
 				
-				
 				$this -> errors[] = __('form_error');
 			}
 			
@@ -55,6 +56,11 @@ class Contacts extends BaseController{
 			   $this -> errors[] =  __('text_filed');
 			}else{
 				$html .= '<p>Сообщение:<br /> "'.htmlentities($text).'"</p>';
+			}
+			
+
+			if(Captcha::getInstance() -> keyString() !== $request -> post('verify')){
+				$this -> errors[] =  'Не верно заполнено проверочное поле!';
 			}
 
 			

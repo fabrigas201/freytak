@@ -29,6 +29,7 @@ $route -> group(['prefix' => 'admin', 'namespace' => 'App\\Controllers\\Admin', 
 
 $route -> group(['namespace' => 'App\\Controllers\\Web'], function($route){
     $route -> get('/', 'Home@index');
+	 $route -> get('captcha','CaptchaCode@index');
 });
 
 
@@ -45,8 +46,6 @@ $route -> group(['namespace' => 'App\\Controllers\\Web', 'prefix' => $langs_coll
 	$route -> get('search', 		'Search@index');
 	$route -> get('history',		'History@index');
 	$route -> get('history/:any',	'History@read');
-
-	
 
 	//Контакты
 	$route -> get('contact/:any', 	'Contacts@index');
