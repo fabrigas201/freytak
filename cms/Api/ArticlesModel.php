@@ -11,7 +11,7 @@ class ArticlesModel{
 		if(!$data['menu_id']) return false;
 
 		
-		$sql = 'SELECT `amd`.`alias` as `menu_alias`, `amd`.`lang`, `amd`.`menu_id`, `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`isHidden`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `amd`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" ';
+		$sql = 'SELECT `amd`.`alias` as `menu_alias`, `amd`.`lang`, `amd`.`menu_id`, `an`.`id`, `an`.`mod`, `an`.`dateAdd`, `an`.`isHidden`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" ';
 		
 		if(is_numeric($data['menu_id'])){
 			$sql .= 'AND `amd`.`menu_id`='.$data['menu_id'].' ';
@@ -82,17 +82,17 @@ class ArticlesModel{
 		if(!$data['menu_id']) return false;
 
 		
-		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages"';
+		$sql = 'SELECT `an`.`id`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi`, `and`.`lang` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="pages" ';
 		
 		if(is_numeric($data['menu_id'])){
-			$sql .= 'AND `an`.`id`='.$data['menu_id'].' ';
+			$sql .= ' AND `an`.`id`='.$data['menu_id'].' ';
 		}else{
-			$sql .= 'AND `and`.`alias`="'.$data['menu_id'].'" ';
+			$sql .= ' AND `and`.`alias`="'.$data['menu_id'].'" ';
 		}
 	
 
 		$query = DB::query($sql);
-		
+
 		
 		if($query -> numRows == 1){
 			$result = $query -> row;

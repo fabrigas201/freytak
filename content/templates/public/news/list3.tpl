@@ -37,7 +37,7 @@
 								</a>
 							</div>
 							<span class="post__author info__about">
-							{if isset($v -> dateAdd) && $v -> dateAdd != '0000-00-00 00:00:00'}{date_to($v -> dateAdd)} {__('years')} | {/if} {if isset($v -> for_smi)} <i>для "{$v -> for_smi}"</i>{/if}
+							{if isset($v -> dateAdd) && $v -> dateAdd != '0000-00-00 00:00:00'}{date_to($v -> dateAdd)} {__('years')} | {/if} {if isset($v -> for_smi)} <i>Источник публикации "{$v -> for_smi}"</i>{/if}
 							</span>
 						</div>
 						{/foreach}

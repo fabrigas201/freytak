@@ -28,7 +28,7 @@
 					
 					{if isset($cover)}
 					<div class="image-gallery">
-						<a id="thumb1" href="{$cover}" class="image highslide" onclick="return hs.expand(this)">
+						<a id="thumb1" href="{get_url('i/news/')}/{$cover_big}" class="image highslide" onclick="return hs.expand(this)">
 							<img src="{$cover}" alt="{$descr}" class="image__object"  />
 						</a>
 					</div>

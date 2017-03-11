@@ -8,7 +8,7 @@ class NewsModel{
 
 	public function getNews($data = []){
 		
-		$sql = 'SELECT `amd`.`alias` as `menu_alias`,`amd`.`lang`, `amd`.`menu_id`, `an`.`id`, `an`.`dateAdd`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `amd`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  ';
+		$sql = 'SELECT `amd`.`alias` as `menu_alias`, `amd`.`menu_id`, `an`.`id`, `an`.`dateAdd`, `an`.`mod`, `an`.`id`, `an`.`isHidden`, `an`.`id`, `an`.`inCalendar`, `an`.`inIndex`, `an`.`posi`, `an`.`eventDate`, `an`.`categories`, `and`.`metaD`, `and`.`lang`, `and`.`metaK`, `and`.`title`, `and`.`alias`, `and`.`descr`, `and`.`descrfull`, `and`.`news_id`, `and`.`for_smi` FROM `a_news` as `an` LEFT JOIN `a_news_description` as `and` ON(`an`.`id`=`and`.`news_id`) LEFT JOIN `a_menu_description` as `amd` ON (`an`.`categories`=`amd`.`menu_id`) WHERE `and`.`lang` = "'.config('lang.weblang').'" AND `an`.`mod`="news"  ';
 		
 		if(isset($data['menu_id'])){
 			$id = preg_replace('/[^0-9a-z_-]+/i','',trim($data['menu_id']));

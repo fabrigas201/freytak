@@ -120,7 +120,11 @@ class BaseController extends Controller {
 		$historyModel = new HistoryModel();
 		$historyModel -> image_table = 'a_shop_images';
 		$historyAvatars = $historyModel -> getHistory();
-		shuffle($historyAvatars);
+		if(!empty($historyAvatars)){
+			shuffle($historyAvatars);
+		}
+		
+		
 		
 		// Определение текущей страницы
 		$current = explode('/', $_SERVER['REQUEST_URI']);
