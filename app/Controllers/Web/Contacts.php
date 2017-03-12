@@ -440,7 +440,7 @@ class Contacts extends BaseController{
 		
 		$pages = new Pages();
 		
-		if(empty($result)){
+		if(empty($result) || empty($pageMenu)){
 			return new NotFoundException;
 		}
 		

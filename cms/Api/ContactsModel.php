@@ -97,7 +97,7 @@ class ContactsModel{
 
 	public function getContactWeb($data = []){
 		
-		$sql = 'SELECT `amd`.`id`, `amd`.`alias`, `amd`.`title`,  `o`.`id`, `o`.`data`, `o`.`isHidden`, `o`.`modid`, `o`.`mod`, `o`.`posi`, `o`.`category`, `od`.`metaK`,`od`.`metaD`, `od`.`descr`,`od`.`descrfull`, `od`.`other_id`, `od`.`lang` FROM `a_other` as `o` LEFT JOIN `a_other_description` as `od` ON (`o`.`id`=`od`.`other_id`)  LEFT JOIN `a_menu_description` as `amd` ON (`o`.`category`=`amd`.`menu_id`) WHERE `od`.`lang` = "'.config('lang.base').'" AND `o`.`mod`="contacts" ';
+		$sql = 'SELECT `amd`.`id`, `amd`.`alias`, `amd`.`title`,  `o`.`id`, `o`.`data`, `o`.`isHidden`, `o`.`modid`, `o`.`mod`, `o`.`posi`, `o`.`category`, `od`.`metaK`,`od`.`metaD`, `od`.`descr`,`od`.`descrfull`, `od`.`other_id`, `od`.`lang` FROM `a_other` as `o` LEFT JOIN `a_other_description` as `od` ON (`o`.`id`=`od`.`other_id`)  LEFT JOIN `a_menu_description` as `amd` ON (`o`.`category`=`amd`.`menu_id`) WHERE `od`.`lang` = "'.config('lang.weblang').'" AND `o`.`mod`="contacts" ';
 		
 		if(is_numeric($data['menu_id'])){
 			$sql .= 'AND `amd`.`id`='.$data['menu_id'].' ';
@@ -108,8 +108,7 @@ class ContactsModel{
 		
 		$query = DB::query($sql);
 		
-		
-		if($query -> numRows == 1){
+		if($query -> numRows > 0){
 			$result = $query -> row;
 			
 			if(!isset($result -> alias)){

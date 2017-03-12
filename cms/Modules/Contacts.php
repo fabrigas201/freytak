@@ -201,7 +201,7 @@ class Contacts extends Modules {
 		}
 		
 		if($request -> post('categories')){
-			$sql_query_data['base']['category'] = ahtmlspecialchars($request -> post('categories'),ENT_QUOTES);
+			$sql_query_data['base']['category'] = htmlspecialchars($request -> post('categories'),ENT_QUOTES);
 		}else{
 			$sql_query_data['base']['category'] = '';
 		}
