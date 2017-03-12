@@ -222,6 +222,7 @@ class News extends BaseController{
 			
 			if(isset($result -> cover -> name)){
 				$vars['cover'] = asset_cache($result -> cover -> name, ['width' => 232, 'height' => 171]);
+				$vars['cover_big'] = $result -> cover -> name;
 			}else{
 				$vars['cover'] = '';
 			}
